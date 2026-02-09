@@ -31,6 +31,9 @@ data/raw/*.md
 # 临时文件
 data/_temp_prompt.txt
 
+# 生成的报告
+data/reports/
+
 # IDE
 .vscode/
 .idea/

@@ -80,8 +80,8 @@ class JSRendererScraper(BaseScraper):
             page.close()
 
             # 限制长度
-            if len(content) > 20000:
-                content = content[:20000] + "\n\n... (内容过长，已截断)"
+            if len(content) > 100000:
+                content = content[:100000] + "\n\n... (内容过长，已截断)"
 
             print(f"  ✓ 成功获取 {len(content)} 字符")
 

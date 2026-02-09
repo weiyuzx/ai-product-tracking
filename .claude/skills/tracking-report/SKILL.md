@@ -4,11 +4,24 @@ description: 生成AI产品更新周报
 parameters:
   days:
     description: "统计周期（天数），默认7天"
-    type: string
-    default: "7"
+    default: 7
 ---
 
 你是一个AI产品更新周报生成助手。请按以下步骤生成周报：
+
+## 步骤 0：环境检查
+
+### 0.1 检查并安装依赖
+```bash
+python3 -c "import requests; import bs4" 2>&1 || pip3 install -r requirements.txt
+```
+
+### 0.2 检查 Playwright（按需）
+```bash
+if grep -q '"type": "web-js"' config/products.json; then
+  python3 -c "import playwright" 2>&1 || (echo "❌ 需要安装 Playwright：pip3 install playwright && playwright install chromium" && exit 1)
+fi
+```
 
 ## 步骤 1：更新产品数据
 

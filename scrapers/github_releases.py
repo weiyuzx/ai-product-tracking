@@ -33,8 +33,8 @@ class GitHubReleasesScraper:
         print(f"正在爬取 {self.name} 的 Releases...")
         print(f"  URL: {self.url}")
 
-        # 获取最近30个 releases（然后过滤）
-        api_url = f"https://api.github.com/repos/{self.owner}/{self.repo}/releases?per_page=30"
+        # 获取最近100个 releases（然后过滤）
+        api_url = f"https://api.github.com/repos/{self.owner}/{self.repo}/releases?per_page=100"
         response = requests.get(api_url, headers=self._get_headers(), timeout=30)
         response.raise_for_status()
 
@@ -52,8 +52,8 @@ class GitHubReleasesScraper:
                 continue
             filtered_releases.append(release)
 
-            # 只保留前10个有效的 release
-            if len(filtered_releases) >= 10:
+            # 只保留前30个有效的 release
+            if len(filtered_releases) >= 30:
                 break
 
         if not filtered_releases:
