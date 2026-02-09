@@ -1,0 +1,29 @@
+{
+  "products": [
+    {
+      "name": "Claude",
+      "type": "github-releases",
+      "url": "https://github.com/anthropics/claude-code/releases"
+    },
+    {
+      "name": "OpenClaw",
+      "type": "github-releases",
+      "url": "https://github.com/openclaw/openclaw/releases"
+    },
+    {
+      "name": "Cline",
+      "type": "github-releases",
+      "url": "https://github.com/cline/cline/releases"
+    },
+    {
+      "name": "RooCode",
+      "type": "github-releases",
+      "url": "https://github.com/RooCodeInc/Roo-Code/releases"
+    },
+    {
+      "name": "Trae",
+      "type": "web-js",
+      "url": "https://docs.trae.ai/ide/changelog"
+    }
+  ]
+}
