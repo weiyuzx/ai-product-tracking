@@ -91,7 +91,7 @@ python test_weekly.py        # 生成一周内的更新汇总
 ## 📂 项目结构
 
 ```
-auto-tracking/
+ai-product-tracking/
 ├── config/
 │   └── products.json          # 产品配置
 ├── scrapers/

@@ -5,7 +5,8 @@
       "Bash(python3:*)",
       "Bash(ls:*)",
       "Bash(curl:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(git config:*)"
     ]
   }
 }
