@@ -6,6 +6,10 @@ import json
 from pathlib import Path
 from datetime import datetime, timedelta
 from typing import List, Dict, Any
+from platform_compat import setup_stdio_encoding
+
+# 跨平台兼容性设置（在导入后立即执行）
+setup_stdio_encoding()
 
 
 class AIProcessor:

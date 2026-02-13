@@ -6,7 +6,9 @@
       "Bash(ls:*)",
       "Bash(curl:*)",
       "Bash(grep:*)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(tree:*)",
+      "Bash(python:*)"
     ]
   }
 }

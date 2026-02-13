@@ -5,6 +5,10 @@ import json
 from pathlib import Path
 from datetime import datetime
 from ai_processor import AIProcessor
+from platform_compat import setup_stdio_encoding
+
+# 跨平台兼容性设置
+setup_stdio_encoding()
 
 
 def load_config():

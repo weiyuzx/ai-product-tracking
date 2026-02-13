@@ -1,5 +1,11 @@
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from .base import BaseScraper
+import sys
+from pathlib import Path
+
+# 导入 platform_compat 模块
+sys.path.insert(0, str(Path(__file__).parent.parent))
+from platform_compat import is_windows, is_macos, is_linux
 
 
 class JSRendererScraper(BaseScraper):
@@ -13,6 +19,49 @@ class JSRendererScraper(BaseScraper):
         self._browser = None
         self._playwright = None
 
+    def _find_chrome_path(self) -> Optional[str]:
+        """
+        查找系统 Chrome 浏览器的可执行文件路径
+
+        Returns:
+            Chrome 可执行文件路径，如果找不到则返回 None
+        """
+        import os
+        import shutil
+
+        # Windows Chrome 路径
+        if is_windows():
+            possible_paths = [
+                r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+                r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+                os.path.expandvars(r"%LocalAppData%\Google\Chrome\Application\chrome.exe"),
+            ]
+            for path in possible_paths:
+                if os.path.exists(path):
+                    return path
+
+        # macOS Chrome 路径
+        elif is_macos():
+            possible_paths = [
+                "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                "/Applications/Google Chrome Beta.app/Contents/MacOS/Google Chrome Beta",
+                "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
+            ]
+            for path in possible_paths:
+                if os.path.exists(path):
+                    return path
+
+        # Linux Chrome 路径
+        elif is_linux():
+            # 尝试通过命令查找
+            chrome_commands = ['google-chrome', 'google-chrome-stable', 'chromium', 'chromium-browser']
+            for cmd in chrome_commands:
+                chrome_path = shutil.which(cmd)
+                if chrome_path:
+                    return chrome_path
+
+        return None
+
     def _init_playwright(self):
         """初始化 Playwright"""
         if self._playwright is None:
@@ -21,11 +70,9 @@ class JSRendererScraper(BaseScraper):
                 self._playwright_ctx = sync_playwright().start()
 
                 # 尝试使用系统 Chrome
-                chrome_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+                chrome_path = self._find_chrome_path()
 
-                # 检查 Chrome 是否存在
-                import os
-                if os.path.exists(chrome_path):
+                if chrome_path:
                     print(f"  使用系统 Chrome: {chrome_path}")
                     self._browser = self._playwright_ctx.chromium.launch(
                         headless=True,

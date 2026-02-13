@@ -12,6 +12,10 @@ from pathlib import Path
 from datetime import datetime
 from scrapers import create_scraper
 from scrapers.parser import ChangelogParser
+from platform_compat import setup_stdio_encoding
+
+# 跨平台兼容性设置
+setup_stdio_encoding()
 
 
 # 配置路径

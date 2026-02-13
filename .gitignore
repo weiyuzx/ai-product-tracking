@@ -24,10 +24,6 @@ venv/
 ENV/
 env/
 
-# 数据文件（可选，根据你的需求调整）
-data/raw/*.md
-!data/raw/.gitkeep
-
 # 临时文件
 data/_temp_prompt.txt
 
