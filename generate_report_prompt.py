@@ -1,5 +1,5 @@
 """
-周报生成器 - 生成周报提示词文件
+报告提示词生成器 - 生成日报/周报/月报提示词文件
 """
 import json
 import re
@@ -9,6 +9,37 @@ from platform_compat import setup_stdio_encoding
 
 # 跨平台兼容性设置
 setup_stdio_encoding()
+
+
+def get_report_type(days: int) -> str:
+    """根据天数判断报告类型"""
+    if days == 1:
+        return '日报'
+    elif days == 7:
+        return '周报'
+    elif days >= 28:
+        return '月报'
+    else:
+        return f'{days}天报告'
+
+
+def get_report_filename(days: int) -> str:
+    """生成报告文件名：2026-D-02-14 / 2026-W-07 / 2026-M-02"""
+    now = datetime.now()
+
+    if days == 1:
+        # Daily: 2026-D-02-14.md
+        return now.strftime('%Y-D-%m-%d.md')
+    elif days == 7:
+        # Weekly: 2026-W-07.md
+        week_num = now.isocalendar()[1]
+        return f"{now.strftime('%Y')}-W-{week_num:02d}.md"
+    elif days >= 28:
+        # Monthly: 2026-M-02.md
+        return now.strftime('%Y-M-%m.md')
+    else:
+        # Custom: 2026-C-02-14.md (C for Custom)
+        return now.strftime('%Y-C-%m-%d.md')
 
 
 def load_config():
@@ -113,52 +144,56 @@ def collect_all_updates(days: int = 7) -> str:
     return '\n'.join(all_content)
 
 
-def generate_weekly_report(days: int = 7):
+def generate_report_prompt(days: int = 1):
     """
-    生成周报 markdown 文件
+    生成报告提示词文件（用于 skill 使用）
 
     Args:
-        days: 周期天数
+        days: 周期天数（默认1天）
     """
+    report_type = get_report_type(days)
     print("=" * 60)
-    print(f"周报生成器 - 最近 {days} 天")
+    print(f"报告提示词生成器 - 最近 {days} 天 ({report_type})")
     print("=" * 60)
 
     # 创建报告目录
     reports_dir = Path(__file__).parent / 'data' / 'reports'
     reports_dir.mkdir(parents=True, exist_ok=True)
 
-    # 生成时间戳文件名
-    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    report_filename = f"weekly_report_{timestamp}.md"
+    # 生成报告文件名
+    report_filename = get_report_filename(days)
 
     # 收集所有产品更新
     print(f"\n📊 收集所有产品更新...")
     all_updates = collect_all_updates(days=days)
 
-    # 生成周报提示词（用于让Claude处理）
-    print(f"\n📝 生成周报...")
-    report_prompt = f"""你是一个专业的产品更新周报编辑。请从以下更新日志中提取最近{days}天的关键更新，生成一份简洁的周报。
+    # 计算周期显示的起止日期（往前推算，包括今天）
+    start_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
+    end_date = datetime.now().strftime('%Y-%m-%d')
+
+    # 生成报告提示词（用于让Claude处理）
+    print(f"\n📝 生成{report_type}提示词...")
+    report_prompt = f"""你是一个专业的产品更新报告编辑。请从以下更新日志中提取最近{days}天的关键更新，生成一份简洁的{report_type}。
 
 要求：
 
-1. 一句话总结：包含最核心的更新、发展趋势和重要价值点（50-80字）
-2. 本周要点：列出新功能、价值点、用户感知强烈的地方（3-5条，带图标）
+1. 一句话总结：包含最核心的更新、发展趋势和重要价值点（重点是准确，不需要严格限制字数）
+2. 重点提炼：列出新功能、价值点、用户感知强烈的地方（3-5条，带图标）
 3. 各产品更新：按产品分组，提炼新功能和重要改进，忽略常规修复
 4. 每个产品列出最重要的3-5个更新点，不标注版本号和时间
 5. 使用emoji图标增强可读性（✨新功能、🚀重要更新、⚡改进）
 6. 先结论再逐级展开
 
-周报格式：
+报告格式：
 
 ```markdown
-# AI产品更新周报
+# AI产品更新{report_type}
 
-**周期：{datetime.now().strftime('%Y-%m-%d')} 至 {datetime.now().strftime('%Y-%m-%d')}**
+**周期：{start_date} 至 {end_date}**
 
-**一句话总结：** 本周最核心的更新、发展趋势和重要价值点（50-80字）
+**一句话总结：** 本周期最核心的更新、发展趋势和重要价值点（重点是准确）
 
-## 本周要点
+## 重点提炼
 
 🚀 新功能或重要更新
 ✨ 新功能
@@ -179,7 +214,7 @@ def generate_weekly_report(days: int = 7):
 ...
 ```
 
-请基于以下数据生成周报：
+请基于以下数据生成{report_type}：
 
 {all_updates}
 """
@@ -188,23 +223,24 @@ def generate_weekly_report(days: int = 7):
     temp_prompt_file = Path(__file__).parent / 'data' / '_temp_prompt.txt'
     temp_prompt_file.write_text(report_prompt, encoding='utf-8')
 
-    print(f"✅ 周报提示词已准备好\n")
+    print(f"✅ {report_type}提示词已准备好\n")
     print(f"📄 提示词位置: {temp_prompt_file}\n")
-    print(f"💡 请将提示词内容发送给Claude，让Claude生成最终的周报")
-    print(f"   周报将保存到: {reports_dir / report_filename}")
+    print(f"💡 请将提示词内容发送给Claude，让Claude生成最终的{report_type}")
+    print(f"   {report_type}将保存到: {reports_dir / report_filename}")
 
     return {
         'prompt_file': str(temp_prompt_file),
         'expected_report': str(reports_dir / report_filename),
-        'timestamp': timestamp
+        'report_type': report_type,
+        'filename': report_filename
     }
 
 
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description='生成AI产品更新周报')
-    parser.add_argument('--days', type=int, default=7, help='周期天数（默认：7）')
+    parser = argparse.ArgumentParser(description='生成AI产品更新报告提示词')
+    parser.add_argument('--days', type=int, default=1, help='周期天数（默认：1）')
 
     args = parser.parse_args()
-    generate_weekly_report(days=args.days)
+    generate_report_prompt(days=args.days)

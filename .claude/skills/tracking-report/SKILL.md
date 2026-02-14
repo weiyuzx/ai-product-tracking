@@ -1,13 +1,13 @@
 ---
 name: tracking-report
-description: 生成AI产品更新周报
+description: 生成AI产品更新报告（日报/周报/月报）
 parameters:
   days:
-    description: "统计周期（天数），默认7天"
-    default: 7
+    description: "统计周期（天数），默认1天（1=日报，7=周报，28+=月报）"
+    default: 1
 ---
 
-你是一个AI产品更新周报生成助手。请按以下步骤生成周报：
+你是一个AI产品更新报告生成助手。请按以下步骤生成报告：
 
 ## 步骤 0：环境检查
 
@@ -63,18 +63,18 @@ python main_incremental.py
 python3 main_incremental.py
 ```
 
-## 步骤 2：生成周报提示词
+## 步骤 2：生成报告提示词
 
-基于最新数据生成周报提示词：
+基于最新数据生成报告提示词：
 
 **Windows:**
 ```bash
-python generate_weekly_report.py --days {{days}}
+python generate_report_prompt.py --days {{days}}
 ```
 
 **macOS/Linux:**
 ```bash
-python3 generate_weekly_report.py --days {{days}}
+python3 generate_report_prompt.py --days {{days}}
 ```
 
 ## 步骤 3：读取提示词
@@ -96,15 +96,15 @@ type data\_temp_prompt.txt
 cat data/_temp_prompt.txt
 ```
 
-## 步骤 4：生成周报
+## 步骤 4：生成报告
 
-基于提示词生成周报，要求：
+基于提示词生成报告，要求：
 
 1. **内容要求**：
-   - 使用 config/prompts.json 中定义的周报模板
+   - 使用提示词中定义的报告模板
    - 提炼新功能和重要改进，忽略常规修复
-   - 一句话总结要包含核心更新和趋势分析（50-80字）
-   - 本周要点列出3-5条最重要的更新
+   - 一句话总结要包含核心更新和趋势分析（重点是准确，不需要严格限制字数）
+   - 重点提炼列出3-5条最重要的更新
 
 2. **格式要求**：
    - 使用 emoji 图标（✨新功能、🚀重要更新、⚡改进）
@@ -113,12 +113,12 @@ cat data/_temp_prompt.txt
    - 不标注版本号和时间
 
 3. **保存要求**：
-   - 保存到 data/reports/weekly_report_{{timestamp}}.md
-   - 文件名使用当前时间戳（格式：YYYYMMDD_HHMMSS）
+   - 保存到 data/reports/{{report_filename}}
+   - 文件名格式：2026-D-02-14.md（日报）/ 2026-W-07.md（周报）/ 2026-M-02.md（月报）
    - 使用 Write 工具保存
 
 4. **输出要求**：
-   - 在对话中显示周报预览
+   - 在对话中显示报告预览
    - 告知用户保存的文件路径
 
 ## 📝 跨平台兼容性说明
