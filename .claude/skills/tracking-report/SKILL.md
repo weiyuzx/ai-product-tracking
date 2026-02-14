@@ -25,12 +25,12 @@ python3 -c "import platform; os_name = platform.system(); print('Windows' if os_
 
 **Windows:**
 ```bash
-python -c "import requests; import bs4" 2>&1 || pip install -r requirements.txt
+python -c "from platform_compat import setup_stdio_encoding; setup_stdio_encoding(); import requests, bs4; print('✅ 依赖已安装')" 2>&1 || pip install -r requirements.txt
 ```
 
 **macOS/Linux:**
 ```bash
-python3 -c "import requests; import bs4" 2>&1 || pip3 install -r requirements.txt
+python3 -c "from platform_compat import setup_stdio_encoding; setup_stdio_encoding(); import requests, bs4; print('✅ 依赖已安装')" 2>&1 || pip3 install -r requirements.txt
 ```
 
 ### 0.3 安装 Playwright 浏览器（按需）
@@ -39,12 +39,12 @@ python3 -c "import requests; import bs4" 2>&1 || pip3 install -r requirements.tx
 
 **Windows:**
 ```bash
-python -c "import playwright" 2>&1 || (echo "安装 Playwright..." && pip install playwright && python -m playwright install chromium)
+python -c "from platform_compat import setup_stdio_encoding; setup_stdio_encoding(); import playwright; print('✅ Playwright 已安装')" 2>&1 || (echo "安装 Playwright..." && pip install playwright && python -m playwright install chromium)
 ```
 
 **macOS/Linux:**
 ```bash
-python3 -c "import playwright" 2>&1 || (echo "安装 Playwright..." && pip3 install playwright && python3 -m playwright install chromium)
+python3 -c "from platform_compat import setup_stdio_encoding; setup_stdio_encoding(); import playwright; print('✅ Playwright 已安装')" 2>&1 || (echo "安装 Playwright..." && pip3 install playwright && python3 -m playwright install chromium)
 ```
 
 **💡 提示**：项目已包含 `platform_compat.py` 模块，所有 Python 脚本会自动处理编码和路径差异，无需额外配置。

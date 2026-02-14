@@ -94,7 +94,6 @@ def merge_and_save_updates(product_name: str, existing_versions: set, new_conten
     # 写入文件
     lines = []
     lines.append(f"# {product_name} Changelog\n")
-    lines.append(f"最后更新: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
     lines.append("")
 
     for update in all_updates:
