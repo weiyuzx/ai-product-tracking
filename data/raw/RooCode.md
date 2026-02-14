@@ -70,21 +70,21 @@ ebdcac5ac73cff0a1eec47d552041401e390f11e9497fb9e15523ea0a7b81aff  roo-cli-linux-
 
 ## [3.47.0] - 2026-02-05
 
-![3.47.0 Release - Claude Opus 4.6 & GPT-5.3-Codex](/releases/3.47.0-release.png)
-
-- Add Claude Opus 4.6 support across all providers (#11223 by @hannesrudolph, PR #11224 by @hannesrudolph and @PeterDaveHello)
-- Add GPT-5.3-Codex model to OpenAI - ChatGPT provider (PR #11225 by @roomote)
-- Migrate Gemini and Vertex providers to AI SDK for improved reliability and consistency (PR #11180 by @daniel-lxs)
-- Improve Skills and Slash Commands settings UI with multi-mode support (PR #11157 by @brunobergher)
-- Add support for AGENTS.local.md personal override files (PR #11183 by @roomote)
-- Add Kimi K2.5 model to Fireworks provider (PR #11177 by @daniel-lxs)
-- Improve CLI dev experience and Roo provider API key support (PR #11203 by @cte)
-- Fix: Preserve reasoning parts in AI SDK message conversion (#11199 by @hannesrudolph, PR #11217 by @hannesrudolph)
-- Refactor: Append environment details into existing blocks for cleaner context (#11200 by @hannesrudolph, PR #11198 by @hannesrudolph)
-- Fix: Resolve race condition causing provider switch during CLI mode changes (PR #11205 by @cte)
-- Roo Code CLI v0.0.50 (PR #11204 by @cte)
-- Chore: Remove dead toolFormat code from getEnvironmentDetails (#11206 by @hannesrudolph, PR #11207 by @roomote)
-- Refactor: Simplify docs-extractor mode to focus on raw fact extraction (PR #11129 by @hannesrudolph)
+![3.47.0 Release - Claude Opus 4.6 & GPT-5.3-Codex](/releases/3.47.0-release.png)
+
+- Add Claude Opus 4.6 support across all providers (#11223 by @hannesrudolph, PR #11224 by @hannesrudolph and @PeterDaveHello)
+- Add GPT-5.3-Codex model to OpenAI - ChatGPT provider (PR #11225 by @roomote)
+- Migrate Gemini and Vertex providers to AI SDK for improved reliability and consistency (PR #11180 by @daniel-lxs)
+- Improve Skills and Slash Commands settings UI with multi-mode support (PR #11157 by @brunobergher)
+- Add support for AGENTS.local.md personal override files (PR #11183 by @roomote)
+- Add Kimi K2.5 model to Fireworks provider (PR #11177 by @daniel-lxs)
+- Improve CLI dev experience and Roo provider API key support (PR #11203 by @cte)
+- Fix: Preserve reasoning parts in AI SDK message conversion (#11199 by @hannesrudolph, PR #11217 by @hannesrudolph)
+- Refactor: Append environment details into existing blocks for cleaner context (#11200 by @hannesrudolph, PR #11198 by @hannesrudolph)
+- Fix: Resolve race condition causing provider switch during CLI mode changes (PR #11205 by @cte)
+- Roo Code CLI v0.0.50 (PR #11204 by @cte)
+- Chore: Remove dead toolFormat code from getEnvironmentDetails (#11206 by @hannesrudolph, PR #11207 by @roomote)
+- Refactor: Simplify docs-extractor mode to focus on raw fact extraction (PR #11129 by @hannesrudolph)
 - Revert then re-land AI SDK reasoning fix (PR #11216 by @mrubens, PR #11196 by @hannesrudolph)
 
 ## [cli-v0.0.50] - 2026-02-05
@@ -400,62 +400,62 @@ c756adba40328b5bcd5f084b2356ae4aab107b4caef74e49961864bd415138be  roo-cli-darwin
 
 ## [cli-v0.0.47] - 2026-01-17
 
-## What's New
-
-
-### Added
-
-- **Workspace flag**: New `-w, --workspace <path>` option to specify a custom workspace directory instead of using the current working directory
-- **Oneshot mode**: New `--oneshot` flag to exit upon task completion, useful for scripting and automation (can also be saved in settings via [`CliSettings.oneshot`](src/types/types.ts))
-
-### Changed
-
-- Skip onboarding flow when a provider is explicitly specified via `--provider` flag or saved in settings
-- Unified permission flags: Combined `-y`, `--yes`, and `--dangerously-skip-permissions` into a single option for Claude Code-like CLI compatibility
-- Improved Roo Code Router authentication flow and error messaging
-
-### Fixed
-
-- Removed unnecessary timeout that could cause issues with long-running tasks
-- Fixed authentication token validation for Roo Code Router provider
-
-## Installation
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/RooCodeInc/Roo-Code/main/apps/cli/install.sh | sh
-```
-
-Or install a specific version:
-```bash
-ROO_VERSION=0.0.47 curl -fsSL https://raw.githubusercontent.com/RooCodeInc/Roo-Code/main/apps/cli/install.sh | sh
-```
-
-## Requirements
-
-- Node.js 20 or higher
-- macOS (Intel or Apple Silicon) or Linux (x64 or ARM64)
-
-## Usage
-
-```bash
-# Run a task
-roo "What is this project?"
-
-# See all options
-roo --help
-```
-
-## Platform Support
-
-This release includes:
-- `roo-cli-darwin-arm64.tar.gz` - Built on Darwin arm64
-
-> **Note:** Additional platforms will be added as needed. If you need a different platform, please open an issue.
-
-## Checksum
-
-```
-32008b2ddb6b28dc59f1176eb2f4c845b7d8be99960f2d016e7fa6a3e53375b6  roo-cli-darwin-arm64.tar.gz
+## What's New
+
+
+### Added
+
+- **Workspace flag**: New `-w, --workspace <path>` option to specify a custom workspace directory instead of using the current working directory
+- **Oneshot mode**: New `--oneshot` flag to exit upon task completion, useful for scripting and automation (can also be saved in settings via [`CliSettings.oneshot`](src/types/types.ts))
+
+### Changed
+
+- Skip onboarding flow when a provider is explicitly specified via `--provider` flag or saved in settings
+- Unified permission flags: Combined `-y`, `--yes`, and `--dangerously-skip-permissions` into a single option for Claude Code-like CLI compatibility
+- Improved Roo Code Router authentication flow and error messaging
+
+### Fixed
+
+- Removed unnecessary timeout that could cause issues with long-running tasks
+- Fixed authentication token validation for Roo Code Router provider
+
+## Installation
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/RooCodeInc/Roo-Code/main/apps/cli/install.sh | sh
+```
+
+Or install a specific version:
+```bash
+ROO_VERSION=0.0.47 curl -fsSL https://raw.githubusercontent.com/RooCodeInc/Roo-Code/main/apps/cli/install.sh | sh
+```
+
+## Requirements
+
+- Node.js 20 or higher
+- macOS (Intel or Apple Silicon) or Linux (x64 or ARM64)
+
+## Usage
+
+```bash
+# Run a task
+roo "What is this project?"
+
+# See all options
+roo --help
+```
+
+## Platform Support
+
+This release includes:
+- `roo-cli-darwin-arm64.tar.gz` - Built on Darwin arm64
+
+> **Note:** Additional platforms will be added as needed. If you need a different platform, please open an issue.
+
+## Checksum
+
+```
+32008b2ddb6b28dc59f1176eb2f4c845b7d8be99960f2d016e7fa6a3e53375b6  roo-cli-darwin-arm64.tar.gz
 ```
 
 

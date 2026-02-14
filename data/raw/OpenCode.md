@@ -448,40 +448,40 @@ Fix regressions in the app
 
 ## [1.1.53] - 2026-02-05
 
-## Core
-- Load user plugins after built-in plugins
-- Fix unhandled errors when aborting with queued messages
-- User plugins override built-in plugins for the same provider (@rmk40)
-- Move Codex 5.3 model definition to plugin to avoid showing unsupported model to other users
-- Add session usage tracking to ACP (@SteffenDE)
-- Update transforms for GPT-5.3
-## TUI
-- Allow mouse escape via "esc" labels in dialogs (@AksharP5)
-## Desktop
-- Make close comment button visible in prompt input (@alexyaroshuk)
-- Hide prompt input when there are permissions requests or questions
-- More terminal stability fixes
-- Modified file color contrast in app for better visibility
-- Add button to open files in external applications
-- Allow toggling file tree closed independently
-- Stop showing SessionSkeleton on new workspace (@dbpolito)
-- Set workspace name earlier to improve creation and deletion (@dbpolito)
-
-**Thank you to 7 community contributors:**
-- @SteffenDE:
-  - feat(acp): add session usage (#12299)
-- @dbpolito:
-  - feat(desktop): Set Workspace Name Earlier to Improve Creation / Deletion (#12213)
-  - feat(desktop): Stop Showing SessionSkeleton on New Workspace (#12209)
-- @alexyaroshuk:
-  - fix(app): make close comment button visible in prompt input  (#12349)
-- @edoedac0:
-  - docs: add Bosnian README translation (#12341)
-- @ariane-emory:
-  - docs: websearch tool (#12359)
-- @rmk40:
-  - fix(plugin): user plugins override built-in plugins for same provider (#12361)
-- @AksharP5:
+## Core
+- Load user plugins after built-in plugins
+- Fix unhandled errors when aborting with queued messages
+- User plugins override built-in plugins for the same provider (@rmk40)
+- Move Codex 5.3 model definition to plugin to avoid showing unsupported model to other users
+- Add session usage tracking to ACP (@SteffenDE)
+- Update transforms for GPT-5.3
+## TUI
+- Allow mouse escape via "esc" labels in dialogs (@AksharP5)
+## Desktop
+- Make close comment button visible in prompt input (@alexyaroshuk)
+- Hide prompt input when there are permissions requests or questions
+- More terminal stability fixes
+- Modified file color contrast in app for better visibility
+- Add button to open files in external applications
+- Allow toggling file tree closed independently
+- Stop showing SessionSkeleton on new workspace (@dbpolito)
+- Set workspace name earlier to improve creation and deletion (@dbpolito)
+
+**Thank you to 7 community contributors:**
+- @SteffenDE:
+  - feat(acp): add session usage (#12299)
+- @dbpolito:
+  - feat(desktop): Set Workspace Name Earlier to Improve Creation / Deletion (#12213)
+  - feat(desktop): Stop Showing SessionSkeleton on New Workspace (#12209)
+- @alexyaroshuk:
+  - fix(app): make close comment button visible in prompt input  (#12349)
+- @edoedac0:
+  - docs: add Bosnian README translation (#12341)
+- @ariane-emory:
+  - docs: websearch tool (#12359)
+- @rmk40:
+  - fix(plugin): user plugins override built-in plugins for same provider (#12361)
+- @AksharP5:
   - fix(tui): allow mouse escape via "esc" labels in dialogs  (#11421)
 
 
@@ -884,7 +884,7 @@ Fix regressions in the app
 
 ## [1.1.45] - 2026-01-30
 
-## Desktop
+## Desktop
 - Free model layout improvements in app
 
 
@@ -919,279 +919,279 @@ No notable changes
 
 ## [1.1.41] - 2026-01-29
 
-## Core
-- Ensure variants for Copilot models work with maxTokens being set
-- Fixed maxOutputTokens being accidentally hardcoded to undefined which caused kimi-k2.5 issues on some inference providers (@ideallove)
-- Include provider ID in SDK cache key to prevent cache collisions (@saba-ch)
-- Allow media-src data: URL for small audio files in Content Security Policy (@tanapok)
-- Update experimental environment variables in CLI documentation (@bbabou)
-- Add `ctx.abort` to grep tool
-- Add AbortSignal support to Ripgrep.files() and GlobTool (@goniz)
-## Desktop
-- Make settings more responsive for mobile and small web/desktop (@DNGriffin)
-- Fixed type errors in app package (@Brendonovich)
-- Auto scroll to file tabs on open and enable mouse wheel scrolling (@alexyaroshuk)
-- Remove duplicate keys causing TypeScript failures (@eXamadeus)
-- Normalize Chinese punctuation for Chinese UI (@MaxMiksa)
-- Fill missing Chinese translation keys to avoid English fallback (@MaxMiksa)
-- Fix alignment and padding in dialogs (@alexyaroshuk)
-
-**Thank you to 12 community contributors:**
-- @R44VC0RP:
-  - fix(script): remove highlights template from release notes (#11052)
-- @zerone0x:
-  - fix(ui): allow KaTeX inline math to be followed by punctuation (#11033)
-- @alexyaroshuk:
-  - fix(app): alignment and padding in dialogs (#10866)
-  - fix(app): file tabs - auto scroll on open & scroll via mouse wheel (#11070)
-- @MaxMiksa:
-  - fix(app): fill missing zh keys to avoid English fallback (#10841)
-  - fix(opencode): normalize zh punctuation for Chinese UI (#10842)
-  - fix(ui): improve zh duration display formatting (#10844)
-- @goniz:
-  - fix(opencode): add `AbortSignal` support to `Ripgrep.files()` and `GlobTool` (#10833)
-- @eXamadeus:
-  - fix(typescript errors): remove duplicate keys causing typescript failures (#11071)
-- @Brendonovich:
-  - fix(app): types
-- @bbabou:
-  - docs: update experimental environment variables in CLI docs (#11030)
-- @DNGriffin:
-  - fix(app): make settings more responsive for mobile and small web/desktop (#10775)
-- @tanapok:
-  - fix(opencode): allow media-src data: URL for small audio files (#11082)
-- @saba-ch:
-  - fix(provider): include providerID in SDK cache key (#11020)
-- @ideallove:
+## Core
+- Ensure variants for Copilot models work with maxTokens being set
+- Fixed maxOutputTokens being accidentally hardcoded to undefined which caused kimi-k2.5 issues on some inference providers (@ideallove)
+- Include provider ID in SDK cache key to prevent cache collisions (@saba-ch)
+- Allow media-src data: URL for small audio files in Content Security Policy (@tanapok)
+- Update experimental environment variables in CLI documentation (@bbabou)
+- Add `ctx.abort` to grep tool
+- Add AbortSignal support to Ripgrep.files() and GlobTool (@goniz)
+## Desktop
+- Make settings more responsive for mobile and small web/desktop (@DNGriffin)
+- Fixed type errors in app package (@Brendonovich)
+- Auto scroll to file tabs on open and enable mouse wheel scrolling (@alexyaroshuk)
+- Remove duplicate keys causing TypeScript failures (@eXamadeus)
+- Normalize Chinese punctuation for Chinese UI (@MaxMiksa)
+- Fill missing Chinese translation keys to avoid English fallback (@MaxMiksa)
+- Fix alignment and padding in dialogs (@alexyaroshuk)
+
+**Thank you to 12 community contributors:**
+- @R44VC0RP:
+  - fix(script): remove highlights template from release notes (#11052)
+- @zerone0x:
+  - fix(ui): allow KaTeX inline math to be followed by punctuation (#11033)
+- @alexyaroshuk:
+  - fix(app): alignment and padding in dialogs (#10866)
+  - fix(app): file tabs - auto scroll on open & scroll via mouse wheel (#11070)
+- @MaxMiksa:
+  - fix(app): fill missing zh keys to avoid English fallback (#10841)
+  - fix(opencode): normalize zh punctuation for Chinese UI (#10842)
+  - fix(ui): improve zh duration display formatting (#10844)
+- @goniz:
+  - fix(opencode): add `AbortSignal` support to `Ripgrep.files()` and `GlobTool` (#10833)
+- @eXamadeus:
+  - fix(typescript errors): remove duplicate keys causing typescript failures (#11071)
+- @Brendonovich:
+  - fix(app): types
+- @bbabou:
+  - docs: update experimental environment variables in CLI docs (#11030)
+- @DNGriffin:
+  - fix(app): make settings more responsive for mobile and small web/desktop (#10775)
+- @tanapok:
+  - fix(opencode): allow media-src data: URL for small audio files (#11082)
+- @saba-ch:
+  - fix(provider): include providerID in SDK cache key (#11020)
+- @ideallove:
   - fix: maxOutputTokens was accidentally hardcoded to undefined  (#10995)
 
 
 ## [1.1.40] - 2026-01-28
 
-## Core
-- Add SubtaskPart with metadata reference (@YangTianz)
-- Add global configuration support to app
-- Global configuration updates in app package
-- Bump plugins
-## TUI
-- Add streaming prop to markdown element (@remorses)
-## Desktop
-- Close review pane when pressing escape key
-- Enable ctrl+n and ctrl+p for popover navigation in desktop app (@sairajchouhan)
-- Add Thai locale support (@natt-v)
-- Add custom provider support to app
-
-**Thank you to 4 community contributors:**
-- @natt-v:
-  - feat(i18n): add th locale support (#10809)
-- @sairajchouhan:
-  - fix(desktop): enable ctrl+n and ctrl+p for popover navigation (#10777)
-- @YangTianz:
-  - fix: add SubtaskPart with metadata reference (#10990)
-- @remorses:
+## Core
+- Add SubtaskPart with metadata reference (@YangTianz)
+- Add global configuration support to app
+- Global configuration updates in app package
+- Bump plugins
+## TUI
+- Add streaming prop to markdown element (@remorses)
+## Desktop
+- Close review pane when pressing escape key
+- Enable ctrl+n and ctrl+p for popover navigation in desktop app (@sairajchouhan)
+- Add Thai locale support (@natt-v)
+- Add custom provider support to app
+
+**Thank you to 4 community contributors:**
+- @natt-v:
+  - feat(i18n): add th locale support (#10809)
+- @sairajchouhan:
+  - fix(desktop): enable ctrl+n and ctrl+p for popover navigation (#10777)
+- @YangTianz:
+  - fix: add SubtaskPart with metadata reference (#10990)
+- @remorses:
   - fix(markdown): Add streaming prop to markdown element (#11025)
 
 
 ## [1.1.39] - 2026-01-28
 
-## Core
+## Core
 - Ensure Copilot plugin properly sets headers for new messages API
 
 
 ## [1.1.38] - 2026-01-28
 
-## Core
-- Prevent AGENTS.md from being loaded multiple times during parallel tool execution
-- Bump plugin version
-- Ensure unsubscribe from PartUpdated is always called in TaskTool (@goniz)
-- Restore brand integrity of CLI wordmark (@mynameistito)
-- Add experimental OpenTUI markdown component to app (@remorses)
-
-**Thank you to 4 community contributors:**
-- @remorses:
-  - feat(app): use opentui markdown component behind experimental flag (#10900)
-- @jamesmurdza:
-  - docs: add Daytona OpenCode plugin to ecosystem (#10917)
-- @mynameistito:
-  - fix(cli): restore brand integrity of CLI wordmark (#10912)
-- @goniz:
+## Core
+- Prevent AGENTS.md from being loaded multiple times during parallel tool execution
+- Bump plugin version
+- Ensure unsubscribe from PartUpdated is always called in TaskTool (@goniz)
+- Restore brand integrity of CLI wordmark (@mynameistito)
+- Add experimental OpenTUI markdown component to app (@remorses)
+
+**Thank you to 4 community contributors:**
+- @remorses:
+  - feat(app): use opentui markdown component behind experimental flag (#10900)
+- @jamesmurdza:
+  - docs: add Daytona OpenCode plugin to ecosystem (#10917)
+- @mynameistito:
+  - fix(cli): restore brand integrity of CLI wordmark (#10912)
+- @goniz:
   - fix(opencode): ensure unsub(PartUpdated) is always called in TaskTool (#9992)
 
 
 ## [1.1.37] - 2026-01-28
 
-## Core
-- Support headless authentication for ChatGPT/Codex (@rgodha24)
-- Add recommended topP and temperature settings for Kimi K2.5 model
-- Adjust retry check to be more defensive
-- Handle Venice cache creation tokens (@dpuyosa)
-- Add worktree to plugin tool context
-- Expose Instance.directory to custom tools
-- Use Instance.directory instead of process.cwd() in read tool
-- Fix reactive file tree to properly update when files change
-- Attach Anthropic beta headers when using Messages API for Copilot
-- Add retry logic to handle certain provider problems
-- Ensure OpenAI 404 errors are retried (@tim-smart)
-- Use Anthropic-compatible messages API for Anthropic models through Copilot
-- Upgrade OpenTUI to v0.1.75
-- Dynamically resolve AGENTS.md files from subdirectories as agent explores them
-- Add agent description to OpenCode (@SteffenDE)
-- Fix query selector handling of non-Latin characters
-- Await SessionRevert.cleanup for shell to prevent race conditions (@noamzbr)
-- Don't override source in custom provider loaders
-- Add provider settings to app
-- Run start command after reset in app
-- Remove log statement
-## TUI
-- Handle 4-5 digit codes in copy logic
-- Make diff wrapping toggle always available in command list and fix type error (@ariane-emory)
-- Add visual feedback for diff wrap and conceal toggles (@IdrisGit)
-- Adjust TUI syncing logic to prevent agents from being undefined or missing
-- Remove broken app.tsx command option
-- Move animations toggle to global System category (@ariane-emory)
-## Desktop
-- Reintroduce review tab in app
-- Auto-scroll to keep relevant content in view
-- Add 'connect provider' button to the manage models dialog (@alexyaroshuk)
-- Fix terminal corruption issue in app
-- File tree not always loading in app
-- Fix outdated e2e test in app package
-- Do not auto-navigate to last project on app load
-- Add Tauri localization support to desktop application
-- Add internationalization support for Tauri desktop application
-- Better memory management in app
-- Don't connect to localhost through VPN
-- Show 5 highlights in app
-- Highlight selected change in the app
-- Set filetree padding to 6px
-- Align file tree change styling
-- Delay navigation tooltips
-- Adjust titlebar left spacing
-- Shorten navigation tooltips
-- Add filetree tooltips with diff labels
-- Color file tree change dots by diff kind
-- Improved app layout
-- Fix session diffs not always loading in app
-- New end-to-end smoke tests for app
-- Add translations to the app
-- Update settings in general settings
-- Swallow file search errors in app
-- Fix tooltips causing getComputedStyle errors in model select
-- Clean up Tailwind CSS versus pure CSS usage in app
-- Navigate to tabs when opening file in app
-- Open markdown links in external browser
-- Shared terminal ghostty-web instance for better performance
-- Cleanup connect provider timers
-- Don't keep parts in memory
-- Don't show session skeleton after workspace reset
-- Add max-width to tabs with text truncation
-- Use smaller close icon on tabs to match comment cards
-- Only show left border on plus button when sticky
-- Update review empty states to 14px font size and align select file empty state
-- Center file tree empty state with 32px top margin
-- Implement non-fatal error handling in app
-- Fix agent fallback colors in app
-- Added forward and back navigation buttons
-- Add missing tooltips in app
-- Auto-scroll button sometimes sticks in the app
-- Deduplicate Tauri configuration files (@Brendonovich)
-- Only show files in select dialog when clicking + tab
-- Disable magnification gestures on macOS desktop (@ysm-dev)
-- Add Connect provider in model selector (@ProdigyRahul)
-- Add file tree specification tests
-- Enable file watcher in app
-- Improve file tree performance in app
-- Add highlights feature
-- Add new release modal
-- Fix Zen mode disconnect not working in app
-- Disconnect Zen provider
-- Fix e2e test in app package
-- Disable tooltips in file tree tabs
-- Move file tree toggle button to the right side
-- Fade filetree guide lines on hover
-- Dim non-deep filetree guide lines in the app interface
-- Reduce file tree folder indent
-- Refine file tree row spacing and indentation
-- Use medium font weight for filetree items
-- Use chevron icons for filetree folders
-- Tighten file tree row spacing
-- Adjust filetree panel padding
-- Scope filetree pill tabs styling
-- Add Vercel AI Gateway provider description
-- Add provider descriptions to settings
-- Add transition to command palette
-- Add transition to select provider dialog
-- Add optional transition animations to dialog
-- Style view all button with interactive color and margin
-- Add models icon and use in settings UI
-- Add providers icon and use in settings
-- Use default cursor for environment provider text
-- Add hover text for environment-connected providers
-- Set provider row height to 56px
-- Update button styles and disconnect button size in UI
-- Fix session synchronization issue in application
-- Add missing i18n strings in app
-- Add session load limit to prevent excessive memory usage
-- Add end-to-end test for sidebar navigation
-- Replace signals with createStore in app
-- Add file tree mode to app
-- Add file tree view to app
-- Use focus-visible instead of focus to prevent sticky hover effect on click (@ProdigyRahul)
-- Better sidebar hover behavior when collapsed
-- Make sidebar full-height in app
-- Add full-height hover effect to sidebar
-- Add model settings to application
-- Add model settings interface to app
-- Handle non-tool call permissions in app
-- Default servers on web
-- Performance improvements in the app
-- Add missing translations for status messages
-- Don't allow workspaces in non-VCS projects
-
-**Thank you to 17 community contributors:**
-- @MartinWie:
-  - docs: fix permission event name (permission.asked not permission.updated) (#10588)
-- @ariane-emory:
-  - fix(tui): Move animations toggle to global System category (resolves #10495) (#10497)
-  - fix: Make diff wrapping toggle always available in command_list and correct a type error (resolves #10682) (#10683)
-- @R44VC0RP:
-  - Add highlight tag parsing for changelog with video support
-  - Add collapsible sections, sticky version header, and style refinements for changelog highlights
-  - fix(web): update spacing on the changelog page
-  - docs: add warning about Claude Pro/Max subscription support (#10595)
-  - fix: move changelog footer outside content div to fix padding (#10712)
-  - fix: add 44px top padding to sticky version header on changelog (#10715)
-  - feat(release): add highlights template to draft releases (#10745)
-  - feat: add /learn command to extract session learnings to scoped AGENTS.md files (#10717)
-- @IdrisGit:
-  - fix(tui): add visual feedback for diff wrap and conceal toggles (#10655)
-- @noamzbr:
-  - fix: await SessionRevert.cleanup for shell (#10669)
-- @SteffenDE:
-  - feat(opencode): add agent description (#10680)
-- @sam-huckaby:
-  - fix(app): Order themes alphabetically (#10698)
-- @alexyaroshuk:
-  - fix(app): restore external link opening in system browser (#10697)
-  - feat(app): add 'connect provider' button to the manage models dialog (#10887)
-- @ProdigyRahul:
-  - fix(ui): use focus-visible instead of focus to prevent sticky hover effect on click (#10651)
-  - fix(app): add connect provier in model selector (#10706)
-- @zerone0x:
-  - fix(enterprise): add message navigation to share page desktop view (#10071)
-- @tim-smart:
-  - fix: ensure openai 404 errors are retried (#10590)
-- @fabiomartino:
-  - docs: add Italian README (#10732)
-- @ysm-dev:
-  - fix(desktop): disable magnification gestures on macOS (#10605)
-- @Brendonovich:
-  - desktop: deduplicate tauri configs
-- @dpuyosa:
-  - feat(opencode): Handle Venice cache creation tokens (#10735)
-- @OpeOginni:
-  - chore(docs): Better explanation on how to allow tools in external directories (#10862)
-- @rgodha24:
+## Core
+- Support headless authentication for ChatGPT/Codex (@rgodha24)
+- Add recommended topP and temperature settings for Kimi K2.5 model
+- Adjust retry check to be more defensive
+- Handle Venice cache creation tokens (@dpuyosa)
+- Add worktree to plugin tool context
+- Expose Instance.directory to custom tools
+- Use Instance.directory instead of process.cwd() in read tool
+- Fix reactive file tree to properly update when files change
+- Attach Anthropic beta headers when using Messages API for Copilot
+- Add retry logic to handle certain provider problems
+- Ensure OpenAI 404 errors are retried (@tim-smart)
+- Use Anthropic-compatible messages API for Anthropic models through Copilot
+- Upgrade OpenTUI to v0.1.75
+- Dynamically resolve AGENTS.md files from subdirectories as agent explores them
+- Add agent description to OpenCode (@SteffenDE)
+- Fix query selector handling of non-Latin characters
+- Await SessionRevert.cleanup for shell to prevent race conditions (@noamzbr)
+- Don't override source in custom provider loaders
+- Add provider settings to app
+- Run start command after reset in app
+- Remove log statement
+## TUI
+- Handle 4-5 digit codes in copy logic
+- Make diff wrapping toggle always available in command list and fix type error (@ariane-emory)
+- Add visual feedback for diff wrap and conceal toggles (@IdrisGit)
+- Adjust TUI syncing logic to prevent agents from being undefined or missing
+- Remove broken app.tsx command option
+- Move animations toggle to global System category (@ariane-emory)
+## Desktop
+- Reintroduce review tab in app
+- Auto-scroll to keep relevant content in view
+- Add 'connect provider' button to the manage models dialog (@alexyaroshuk)
+- Fix terminal corruption issue in app
+- File tree not always loading in app
+- Fix outdated e2e test in app package
+- Do not auto-navigate to last project on app load
+- Add Tauri localization support to desktop application
+- Add internationalization support for Tauri desktop application
+- Better memory management in app
+- Don't connect to localhost through VPN
+- Show 5 highlights in app
+- Highlight selected change in the app
+- Set filetree padding to 6px
+- Align file tree change styling
+- Delay navigation tooltips
+- Adjust titlebar left spacing
+- Shorten navigation tooltips
+- Add filetree tooltips with diff labels
+- Color file tree change dots by diff kind
+- Improved app layout
+- Fix session diffs not always loading in app
+- New end-to-end smoke tests for app
+- Add translations to the app
+- Update settings in general settings
+- Swallow file search errors in app
+- Fix tooltips causing getComputedStyle errors in model select
+- Clean up Tailwind CSS versus pure CSS usage in app
+- Navigate to tabs when opening file in app
+- Open markdown links in external browser
+- Shared terminal ghostty-web instance for better performance
+- Cleanup connect provider timers
+- Don't keep parts in memory
+- Don't show session skeleton after workspace reset
+- Add max-width to tabs with text truncation
+- Use smaller close icon on tabs to match comment cards
+- Only show left border on plus button when sticky
+- Update review empty states to 14px font size and align select file empty state
+- Center file tree empty state with 32px top margin
+- Implement non-fatal error handling in app
+- Fix agent fallback colors in app
+- Added forward and back navigation buttons
+- Add missing tooltips in app
+- Auto-scroll button sometimes sticks in the app
+- Deduplicate Tauri configuration files (@Brendonovich)
+- Only show files in select dialog when clicking + tab
+- Disable magnification gestures on macOS desktop (@ysm-dev)
+- Add Connect provider in model selector (@ProdigyRahul)
+- Add file tree specification tests
+- Enable file watcher in app
+- Improve file tree performance in app
+- Add highlights feature
+- Add new release modal
+- Fix Zen mode disconnect not working in app
+- Disconnect Zen provider
+- Fix e2e test in app package
+- Disable tooltips in file tree tabs
+- Move file tree toggle button to the right side
+- Fade filetree guide lines on hover
+- Dim non-deep filetree guide lines in the app interface
+- Reduce file tree folder indent
+- Refine file tree row spacing and indentation
+- Use medium font weight for filetree items
+- Use chevron icons for filetree folders
+- Tighten file tree row spacing
+- Adjust filetree panel padding
+- Scope filetree pill tabs styling
+- Add Vercel AI Gateway provider description
+- Add provider descriptions to settings
+- Add transition to command palette
+- Add transition to select provider dialog
+- Add optional transition animations to dialog
+- Style view all button with interactive color and margin
+- Add models icon and use in settings UI
+- Add providers icon and use in settings
+- Use default cursor for environment provider text
+- Add hover text for environment-connected providers
+- Set provider row height to 56px
+- Update button styles and disconnect button size in UI
+- Fix session synchronization issue in application
+- Add missing i18n strings in app
+- Add session load limit to prevent excessive memory usage
+- Add end-to-end test for sidebar navigation
+- Replace signals with createStore in app
+- Add file tree mode to app
+- Add file tree view to app
+- Use focus-visible instead of focus to prevent sticky hover effect on click (@ProdigyRahul)
+- Better sidebar hover behavior when collapsed
+- Make sidebar full-height in app
+- Add full-height hover effect to sidebar
+- Add model settings to application
+- Add model settings interface to app
+- Handle non-tool call permissions in app
+- Default servers on web
+- Performance improvements in the app
+- Add missing translations for status messages
+- Don't allow workspaces in non-VCS projects
+
+**Thank you to 17 community contributors:**
+- @MartinWie:
+  - docs: fix permission event name (permission.asked not permission.updated) (#10588)
+- @ariane-emory:
+  - fix(tui): Move animations toggle to global System category (resolves #10495) (#10497)
+  - fix: Make diff wrapping toggle always available in command_list and correct a type error (resolves #10682) (#10683)
+- @R44VC0RP:
+  - Add highlight tag parsing for changelog with video support
+  - Add collapsible sections, sticky version header, and style refinements for changelog highlights
+  - fix(web): update spacing on the changelog page
+  - docs: add warning about Claude Pro/Max subscription support (#10595)
+  - fix: move changelog footer outside content div to fix padding (#10712)
+  - fix: add 44px top padding to sticky version header on changelog (#10715)
+  - feat(release): add highlights template to draft releases (#10745)
+  - feat: add /learn command to extract session learnings to scoped AGENTS.md files (#10717)
+- @IdrisGit:
+  - fix(tui): add visual feedback for diff wrap and conceal toggles (#10655)
+- @noamzbr:
+  - fix: await SessionRevert.cleanup for shell (#10669)
+- @SteffenDE:
+  - feat(opencode): add agent description (#10680)
+- @sam-huckaby:
+  - fix(app): Order themes alphabetically (#10698)
+- @alexyaroshuk:
+  - fix(app): restore external link opening in system browser (#10697)
+  - feat(app): add 'connect provider' button to the manage models dialog (#10887)
+- @ProdigyRahul:
+  - fix(ui): use focus-visible instead of focus to prevent sticky hover effect on click (#10651)
+  - fix(app): add connect provier in model selector (#10706)
+- @zerone0x:
+  - fix(enterprise): add message navigation to share page desktop view (#10071)
+- @tim-smart:
+  - fix: ensure openai 404 errors are retried (#10590)
+- @fabiomartino:
+  - docs: add Italian README (#10732)
+- @ysm-dev:
+  - fix(desktop): disable magnification gestures on macOS (#10605)
+- @Brendonovich:
+  - desktop: deduplicate tauri configs
+- @dpuyosa:
+  - feat(opencode): Handle Venice cache creation tokens (#10735)
+- @OpeOginni:
+  - chore(docs): Better explanation on how to allow tools in external directories (#10862)
+- @rgodha24:
   - feat: support headless authentication for chatgpt/codex (#10890)
 
 

@@ -616,63 +616,63 @@ LFG 🔥 ulw ulw
 
 ## [3.2.3] - 2026-02-04
 
-## What's Changed
-
-### ✨ Features
-
-- **Multi-provider websearch support** - Choose between Exa (default) and Tavily for web search (#1371 by @YanzheL)
-- **Nested skill directories** - Skills can now be organized in subdirectories for better organization (#1254 by @LeekJay)
-- **Disabled skills support** - Add `disabledSkills` config to selectively disable skills
-
-### 🐛 Bug Fixes
-
-#### Authentication & Server
-- Fix OpenCode Desktop server unauthorized error on subagent spawn (#1399 by @ualtinok, @boguan)
-- Add graceful fallback for server auth injection
-
-#### Model & Provider
-- Prefer exact model ID match in fuzzyMatchModel - fixes wrong model selection (#1460)
-- Use supported variant for gemini-3-pro (#1463)
-- Avoid `propertyNames` in skill-mcp for Gemini compatibility (#1465)
-- Honor explicit category model over sisyphus-junior default
-
-#### Skill Loader
-- Respect `disabledSkills` in async skill resolution (caching bug)
-- Deterministic collision handling for duplicate skill names (#1370 by @misyuari)
-
-#### LSP & Tools
-- Prevent stale diagnostics by syncing `didChange` before fetching (#1280 by @Zacks-Zhang)
-- Fix overridden tools (glob, grep) path resolution for OpenCode Desktop
-
-#### Agents & Hooks
-- Deduplicate settings paths to prevent double hook execution (#1297 by @khduy)
-- Honor tools overrides via permission migration (#1289 by @KonaEspresso94)
-- Block bash commands in Prometheus mode to respect permission config (#1449 by @kaizen403)
-- Abort session on model suggestion retry failure
-- Add read-only restrictions for Metis and Momus agents
-
-#### Shell & Environment
-- Use `detectShellType()` instead of hardcoded 'unix' for cross-platform support (#1459)
-- Force unix export syntax for bash env prefix in non-interactive environments
-
-#### CI/CD
-- Use regex variables for bash 5.2+ compatibility in changelog generation
-
-### 🎨 Style
-- Update Hephaestus and Prometheus agent colors
-
-### 📚 Documentation
-- Clarify Prometheus invocation workflow (#1466)
-- Instruct curl over WebFetch for installation (#1461)
-- Document websearch provider configuration
-- Fix broken TOC links in translated READMEs (#1384 by @devxoul)
-
-### 🔧 Other
-- Respect user-configured agent variant in doctor command (#1464)
-- Lazy evaluation prevents crash when websearch disabled
-
----
-
+## What's Changed
+
+### ✨ Features
+
+- **Multi-provider websearch support** - Choose between Exa (default) and Tavily for web search (#1371 by @YanzheL)
+- **Nested skill directories** - Skills can now be organized in subdirectories for better organization (#1254 by @LeekJay)
+- **Disabled skills support** - Add `disabledSkills` config to selectively disable skills
+
+### 🐛 Bug Fixes
+
+#### Authentication & Server
+- Fix OpenCode Desktop server unauthorized error on subagent spawn (#1399 by @ualtinok, @boguan)
+- Add graceful fallback for server auth injection
+
+#### Model & Provider
+- Prefer exact model ID match in fuzzyMatchModel - fixes wrong model selection (#1460)
+- Use supported variant for gemini-3-pro (#1463)
+- Avoid `propertyNames` in skill-mcp for Gemini compatibility (#1465)
+- Honor explicit category model over sisyphus-junior default
+
+#### Skill Loader
+- Respect `disabledSkills` in async skill resolution (caching bug)
+- Deterministic collision handling for duplicate skill names (#1370 by @misyuari)
+
+#### LSP & Tools
+- Prevent stale diagnostics by syncing `didChange` before fetching (#1280 by @Zacks-Zhang)
+- Fix overridden tools (glob, grep) path resolution for OpenCode Desktop
+
+#### Agents & Hooks
+- Deduplicate settings paths to prevent double hook execution (#1297 by @khduy)
+- Honor tools overrides via permission migration (#1289 by @KonaEspresso94)
+- Block bash commands in Prometheus mode to respect permission config (#1449 by @kaizen403)
+- Abort session on model suggestion retry failure
+- Add read-only restrictions for Metis and Momus agents
+
+#### Shell & Environment
+- Use `detectShellType()` instead of hardcoded 'unix' for cross-platform support (#1459)
+- Force unix export syntax for bash env prefix in non-interactive environments
+
+#### CI/CD
+- Use regex variables for bash 5.2+ compatibility in changelog generation
+
+### 🎨 Style
+- Update Hephaestus and Prometheus agent colors
+
+### 📚 Documentation
+- Clarify Prometheus invocation workflow (#1466)
+- Instruct curl over WebFetch for installation (#1461)
+- Document websearch provider configuration
+- Fix broken TOC links in translated READMEs (#1384 by @devxoul)
+
+### 🔧 Other
+- Respect user-configured agent variant in doctor command (#1464)
+- Lazy evaluation prevents crash when websearch disabled
+
+---
+
 **Full Changelog**: https://github.com/code-yeongyu/oh-my-opencode/compare/v3.2.2...v3.2.3
 
 
@@ -1077,121 +1077,121 @@ No notable changes
 
 ## [3.1.0] - 2026-01-26
 
-## New Features
-
-### Tmux Pane Management for Background Agents
-- **2D Grid Layout**: Background agent sessions now support 2D grid layout with intelligent divider-aware calculations
-- **Replace Action**: New replace action prevents mass eviction when managing tmux panes
-- **State-First Architecture**: Complete refactor with decision engine for reliable pane state management
-
-<img width="1909" height="982" alt="image" src="https://github.com/user-attachments/assets/8968e0da-636f-4344-b82e-1f0db32a036e" />
-
-
-### Browser Automation Skills
-- **agent-browser**: New browser automation skill for web scraping, testing, and interaction
-- **dev-browser**: Browser automation with persistent page state, supports Windows
-
-### Enhanced Hooks
-- **Category-Skill Reminder**: Reminds orchestrators about available categories and skills for delegation
-- **Sisyphus Junior Notepad**: Conditional notepad rules injection for subagents
-- **Active Working Context**: Compaction summary now includes active working context section
-
-### Model & Provider Improvements
-- **Connected Providers Cache**: New cache for model availability tracking
-- **Explore Fallback**: Added `github-copilot/gpt-5-mini` to explore agent fallback chain
-
-## Bug Fixes
-- fix: generate skill/slashcommand descriptions synchronously when pre-provided (#1087)
-- fix(tmux-subagent): enable 2D grid layout with divider-aware calculations
-
-## Documentation
-- docs(agent-browser): add detailed installation guide with Playwright troubleshooting
-- docs: regenerate AGENTS.md knowledge base
-
----
-
+## New Features
+
+### Tmux Pane Management for Background Agents
+- **2D Grid Layout**: Background agent sessions now support 2D grid layout with intelligent divider-aware calculations
+- **Replace Action**: New replace action prevents mass eviction when managing tmux panes
+- **State-First Architecture**: Complete refactor with decision engine for reliable pane state management
+
+<img width="1909" height="982" alt="image" src="https://github.com/user-attachments/assets/8968e0da-636f-4344-b82e-1f0db32a036e" />
+
+
+### Browser Automation Skills
+- **agent-browser**: New browser automation skill for web scraping, testing, and interaction
+- **dev-browser**: Browser automation with persistent page state, supports Windows
+
+### Enhanced Hooks
+- **Category-Skill Reminder**: Reminds orchestrators about available categories and skills for delegation
+- **Sisyphus Junior Notepad**: Conditional notepad rules injection for subagents
+- **Active Working Context**: Compaction summary now includes active working context section
+
+### Model & Provider Improvements
+- **Connected Providers Cache**: New cache for model availability tracking
+- **Explore Fallback**: Added `github-copilot/gpt-5-mini` to explore agent fallback chain
+
+## Bug Fixes
+- fix: generate skill/slashcommand descriptions synchronously when pre-provided (#1087)
+- fix(tmux-subagent): enable 2D grid layout with divider-aware calculations
+
+## Documentation
+- docs(agent-browser): add detailed installation guide with Playwright troubleshooting
+- docs: regenerate AGENTS.md knowledge base
+
+---
+
 No notable changes
 
 
 ## [3.0.1] - 2026-01-25
 
-## What's New in v3.0.1
-
-### Bug Fixes
-- fix: add missing `name` property in `loadBuiltinCommands` causing TypeError on slashcommand
-- fix: remove github-copilot association from gpt-5-nano model mapping
-- fix(ralph-loop): skip user messages in transcript completion detection (#1086)
-- fix: update documentation to use `load_skills` instead of `skills` parameter (#1088)
-- docs: fix atlas agent name case in example config
-
-### Refactoring & Cleanup
-- refactor: sync `delegate_task` schema with OpenCode Task tool (resume→session_id, add command param)
-- refactor(ultrawork): replace vague plan agent references with explicit `delegate_task(subagent_type="plan")` invocation syntax
-- refactor: remove dead re-exports from tools barrel
-- refactor: remove deprecated `config-path.ts` (dead code)
-- refactor: remove unused background-compaction hook module
-
-### Community
-- New CLA signatures from @kvokka, @potb, @jsl9208, @sadnow, @ThanhNguyxn, @AamiRobin
-
----
-
+## What's New in v3.0.1
+
+### Bug Fixes
+- fix: add missing `name` property in `loadBuiltinCommands` causing TypeError on slashcommand
+- fix: remove github-copilot association from gpt-5-nano model mapping
+- fix(ralph-loop): skip user messages in transcript completion detection (#1086)
+- fix: update documentation to use `load_skills` instead of `skills` parameter (#1088)
+- docs: fix atlas agent name case in example config
+
+### Refactoring & Cleanup
+- refactor: sync `delegate_task` schema with OpenCode Task tool (resume→session_id, add command param)
+- refactor(ultrawork): replace vague plan agent references with explicit `delegate_task(subagent_type="plan")` invocation syntax
+- refactor: remove dead re-exports from tools barrel
+- refactor: remove deprecated `config-path.ts` (dead code)
+- refactor: remove unused background-compaction hook module
+
+### Community
+- New CLA signatures from @kvokka, @potb, @jsl9208, @sadnow, @ThanhNguyxn, @AamiRobin
+
+---
+
 No notable changes
 
 
 ## [3.0.0] - 2026-01-24
 
-# v3.0.0: The Orchestration Revolution 🚀
-
-We are thrilled to announce the release of **oh-my-opencode v3.0.0**. This major update transforms how agents are deployed and managed, moving away from static definitions toward a dynamic, intelligent orchestration ecosystem.
-
-## 🧩 Dynamic Agent Composition: Categories & Skills
-
-We've introduced **Categories** (model abstractions) and **Skills**, allowing you to configure sub-agents dynamically. 
-
-*   **Beyond Hardcoded Agents:** The legacy "Frontend UI/UX Engineer" has been retired. In its place, the **Sisyphus** agent now dynamically combines the `visual-engineering` category with the `frontend-ui-ux` skill to assign the perfect agent for the task.
-*   **Precision Sub-Agents:** Need efficient Git management? Combine the `quick` category with the `git-master` skill to spawn a lightweight, specialized sub-agent that follows your project's specific Git conventions.
-*   **Extensible & Smart:** This system is fully customizable and scalable. As always, Sisyphus intelligently handles these combinations behind the scenes.
-
-📚 [Category & Skill Guide](https://github.com/code-yeongyu/oh-my-opencode/blob/master/docs/category-skill-guide.md)
-
-## 🔥 Enhanced Sisyphus & Ultrawork Mode
-
-The core **Sisyphus** agent is now more proactive than ever. We've refined its prompts to encourage more aggressive delegation and assistance-seeking. Additionally, **Ultrawork Mode** has been optimized for tighter alignment, ensuring the agent stays perfectly on track during intense coding sessions.
-
-## 🧠 Meet Prometheus: The Strategic Planner
-
-Introducing **Prometheus**, a new agent designed to minimize your cognitive load while maximizing planning accuracy. 
-*   Prometheus conducts an "interview" with you, asking deep, clarifying questions until every requirement is crystal clear.
-*   To ensure nothing is missed, Prometheus consults other specialized agents after drafting the work plan to verify the strategy.
-
-## 🏗️ Atlas: The Master Orchestrator
-
-Once your plan is ready, simply type `/start-work` to activate **Atlas**, our powerful new orchestration mode.
-*   **Right Tool, Right Job:** Atlas manages the entire lifecycle, mixing Categories and Skills to deploy the most efficient agent for every sub-task.
-*   **Relentless Verification:** Atlas obsessively checks and validates every step against the work plan. If a task fails, it automatically resumes the agent to fix the issue.
-*   **Cost Efficiency:** By using Atlas, you can optimize token usage across providers—for example, using **Sonnet** for orchestration, **GLM 4.7** for daily tasks, **Haiku 4.5** for quick fixes, and **GPT 5.2 Codex X-High** for complex backend logic.
-
-📚 [Orchestration Guide](https://github.com/code-yeongyu/oh-my-opencode/blob/master/docs/orchestration-guide.md)
-
-## 🛠️ Reimagined Installation & DX
-
-We've overhauled the setup experience to get you up and running faster:
-*   **Interactive CLI Installer:** A smooth, guided setup process.
-*   **Auto Model Mapping:** Automatically maps models based on your subscription status.
-*   **Native Binaries:** Platform-specific binaries allow you to run without a local runtime.
-*   **Multi-Provider Support:** Full compatibility with GitHub Copilot, OpenCode Zen, Z.ai Coding Plan, and more.
-
-📚 [Installation Guide](https://github.com/code-yeongyu/oh-my-opencode/blob/master/docs/guide/installation.md)
-
-## 🔄 Seamless Migration & Performance
-
-Existing user configurations are automatically migrated at runtime. To handle the increased complexity of new categories and agents, we've implemented a **runtime fuzzing system** for model mapping, ensuring the most appropriate model is always assigned to your tasks.
-
----
-
-Thank you for being part of the journey. Let's keep pushing the boundaries of what's possible.
-
+# v3.0.0: The Orchestration Revolution 🚀
+
+We are thrilled to announce the release of **oh-my-opencode v3.0.0**. This major update transforms how agents are deployed and managed, moving away from static definitions toward a dynamic, intelligent orchestration ecosystem.
+
+## 🧩 Dynamic Agent Composition: Categories & Skills
+
+We've introduced **Categories** (model abstractions) and **Skills**, allowing you to configure sub-agents dynamically. 
+
+*   **Beyond Hardcoded Agents:** The legacy "Frontend UI/UX Engineer" has been retired. In its place, the **Sisyphus** agent now dynamically combines the `visual-engineering` category with the `frontend-ui-ux` skill to assign the perfect agent for the task.
+*   **Precision Sub-Agents:** Need efficient Git management? Combine the `quick` category with the `git-master` skill to spawn a lightweight, specialized sub-agent that follows your project's specific Git conventions.
+*   **Extensible & Smart:** This system is fully customizable and scalable. As always, Sisyphus intelligently handles these combinations behind the scenes.
+
+📚 [Category & Skill Guide](https://github.com/code-yeongyu/oh-my-opencode/blob/master/docs/category-skill-guide.md)
+
+## 🔥 Enhanced Sisyphus & Ultrawork Mode
+
+The core **Sisyphus** agent is now more proactive than ever. We've refined its prompts to encourage more aggressive delegation and assistance-seeking. Additionally, **Ultrawork Mode** has been optimized for tighter alignment, ensuring the agent stays perfectly on track during intense coding sessions.
+
+## 🧠 Meet Prometheus: The Strategic Planner
+
+Introducing **Prometheus**, a new agent designed to minimize your cognitive load while maximizing planning accuracy. 
+*   Prometheus conducts an "interview" with you, asking deep, clarifying questions until every requirement is crystal clear.
+*   To ensure nothing is missed, Prometheus consults other specialized agents after drafting the work plan to verify the strategy.
+
+## 🏗️ Atlas: The Master Orchestrator
+
+Once your plan is ready, simply type `/start-work` to activate **Atlas**, our powerful new orchestration mode.
+*   **Right Tool, Right Job:** Atlas manages the entire lifecycle, mixing Categories and Skills to deploy the most efficient agent for every sub-task.
+*   **Relentless Verification:** Atlas obsessively checks and validates every step against the work plan. If a task fails, it automatically resumes the agent to fix the issue.
+*   **Cost Efficiency:** By using Atlas, you can optimize token usage across providers—for example, using **Sonnet** for orchestration, **GLM 4.7** for daily tasks, **Haiku 4.5** for quick fixes, and **GPT 5.2 Codex X-High** for complex backend logic.
+
+📚 [Orchestration Guide](https://github.com/code-yeongyu/oh-my-opencode/blob/master/docs/orchestration-guide.md)
+
+## 🛠️ Reimagined Installation & DX
+
+We've overhauled the setup experience to get you up and running faster:
+*   **Interactive CLI Installer:** A smooth, guided setup process.
+*   **Auto Model Mapping:** Automatically maps models based on your subscription status.
+*   **Native Binaries:** Platform-specific binaries allow you to run without a local runtime.
+*   **Multi-Provider Support:** Full compatibility with GitHub Copilot, OpenCode Zen, Z.ai Coding Plan, and more.
+
+📚 [Installation Guide](https://github.com/code-yeongyu/oh-my-opencode/blob/master/docs/guide/installation.md)
+
+## 🔄 Seamless Migration & Performance
+
+Existing user configurations are automatically migrated at runtime. To handle the increased complexity of new categories and agents, we've implemented a **runtime fuzzing system** for model mapping, ensuring the most appropriate model is always assigned to your tasks.
+
+---
+
+Thank you for being part of the journey. Let's keep pushing the boundaries of what's possible.
+
 **just.. ulw ulw** ⚡️
 
 ## [3.0.0-beta.16] - 2026-01-23

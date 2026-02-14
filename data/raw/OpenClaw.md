@@ -11,6 +11,7 @@
 - Agents: add synthetic catalog support for `hf:zai-org/GLM-5`. (#15867) Thanks @battman21.
 - Skills: remove duplicate `local-places` Google Places skill/proxy and keep `goplaces` as the single supported Google Places path.
 - Agents: add pre-prompt context diagnostics (`messages`, `systemPromptChars`, `promptChars`, provider/model, session file) before embedded runner prompt calls to improve overflow debugging. (#8930) Thanks @Glucksberg.
+- Onboarding/Providers: preserve Hugging Face auth intent in auth-choice remapping (`tokenProvider=huggingface` with `authChoice=apiKey`) and skip env-override prompts when an explicit token is provided. (#13472) Thanks @Josephrp.
 
 ### Fixes
 
@@ -37,7 +38,6 @@
 - OpenAI Codex/Auth: bridge OpenClaw OAuth profiles into `pi` `auth.json` so model discovery and models-list registry resolution can use Codex OAuth credentials. (#15184) Thanks @loiie45e.
 - Auth/OpenAI Codex: share OAuth login handling across onboarding and `models auth login --provider openai-codex`, keep onboarding alive when OAuth fails, and surface a direct OAuth help note instead of terminating the wizard. (#15406, follow-up to #14552) Thanks @zhiluo20.
 - Onboarding/Providers: add vLLM as an onboarding provider with model discovery, auth profile wiring, and non-interactive auth-choice validation. (#12577) Thanks @gejifeng.
-- Onboarding/Providers: preserve Hugging Face auth intent in auth-choice remapping (`tokenProvider=huggingface` with `authChoice=apiKey`) and skip env-override prompts when an explicit token is provided. (#13472) Thanks @Josephrp.
 - Onboarding/CLI: restore terminal state without resuming paused `stdin`, so onboarding exits cleanly after choosing Web UI and the installer returns instead of appearing stuck.
 - Signal/Install: auto-install `signal-cli` via Homebrew on non-x64 Linux architectures, avoiding x86_64 native binary `Exec format error` failures on arm64/arm hosts. (#15443) Thanks @jogvan-k.
 - macOS Voice Wake: fix a crash in trigger trimming for CJK/Unicode transcripts by matching and slicing on original-string ranges instead of transformed-string indices. (#11052) Thanks @Flash-LHR.
@@ -229,26 +229,26 @@
 
 ## [2026.2.6] - 2026-02-07
 
-### Changes
-
-- Models: support Anthropic Opus 4.6 and OpenAI Codex gpt-5.3-codex (forward-compat fallbacks). (#9853, #10720, #9995) Thanks @TinyTb, @calvin-hpnet, @tyler6204.
-- Providers: add xAI (Grok) support. (#9885) Thanks @grp06.
-- Web UI: add token usage dashboard. (#10072) Thanks @Takhoffman.
-- Memory: native Voyage AI support. (#7078) Thanks @mcinteerj.
-- Sessions: cap sessions_history payloads to reduce context overflow. (#10000) Thanks @gut-puncture.
-- CLI: sort commands alphabetically in help output. (#8068) Thanks @deepsoumya617.
-- Agents: bump pi-mono to 0.52.7; add embedded forward-compat fallback for Opus 4.6 model ids.
-
-### Fixes
-
-- Telegram: auto-inject DM topic threadId in message tool + subagent announce. (#7235) Thanks @Lukavyi.
-- Security: require auth for Gateway canvas host and A2UI assets. (#9518) Thanks @coygeek.
-- Cron: fix scheduling and reminder delivery regressions; harden next-run recompute + timer re-arming + legacy schedule fields. (#9733, #9823, #9948, #9932) Thanks @tyler6204, @pycckuu, @j2h4u, @fujiwara-tofu-shop.
-- Update: harden Control UI asset handling in update flow. (#10146) Thanks @gumadeiras.
-- Security: add skill/plugin code safety scanner; redact credentials from config.get gateway responses. (#9806, #9858) Thanks @abdelsfane.
-- Exec approvals: coerce bare string allowlist entries to objects. (#9903) Thanks @mcaxtr.
-- Slack: add mention stripPatterns for /new and /reset. (#9971) Thanks @ironbyte-rgb.
-- Chrome extension: fix bundled path resolution. (#8914) Thanks @kelvinCB.
+### Changes
+
+- Models: support Anthropic Opus 4.6 and OpenAI Codex gpt-5.3-codex (forward-compat fallbacks). (#9853, #10720, #9995) Thanks @TinyTb, @calvin-hpnet, @tyler6204.
+- Providers: add xAI (Grok) support. (#9885) Thanks @grp06.
+- Web UI: add token usage dashboard. (#10072) Thanks @Takhoffman.
+- Memory: native Voyage AI support. (#7078) Thanks @mcinteerj.
+- Sessions: cap sessions_history payloads to reduce context overflow. (#10000) Thanks @gut-puncture.
+- CLI: sort commands alphabetically in help output. (#8068) Thanks @deepsoumya617.
+- Agents: bump pi-mono to 0.52.7; add embedded forward-compat fallback for Opus 4.6 model ids.
+
+### Fixes
+
+- Telegram: auto-inject DM topic threadId in message tool + subagent announce. (#7235) Thanks @Lukavyi.
+- Security: require auth for Gateway canvas host and A2UI assets. (#9518) Thanks @coygeek.
+- Cron: fix scheduling and reminder delivery regressions; harden next-run recompute + timer re-arming + legacy schedule fields. (#9733, #9823, #9948, #9932) Thanks @tyler6204, @pycckuu, @j2h4u, @fujiwara-tofu-shop.
+- Update: harden Control UI asset handling in update flow. (#10146) Thanks @gumadeiras.
+- Security: add skill/plugin code safety scanner; redact credentials from config.get gateway responses. (#9806, #9858) Thanks @abdelsfane.
+- Exec approvals: coerce bare string allowlist entries to objects. (#9903) Thanks @mcaxtr.
+- Slack: add mention stripPatterns for /new and /reset. (#9971) Thanks @ironbyte-rgb.
+- Chrome extension: fix bundled path resolution. (#8914) Thanks @kelvinCB.
 - Compaction/errors: allow multiple compaction retries on context overflow; show clear billing errors. (#8928, #8391) Thanks @Glucksberg.
 
 
