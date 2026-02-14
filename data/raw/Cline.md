@@ -1,6 +1,29 @@
 # Cline Changelog
 
-最后更新: 2026-02-13 09:53:24
+最后更新: 2026-02-14 09:20:38
+
+
+## [3.62.0] - 2026-02-13
+
+### Fixed
+- Banners now display immediately when opening the extension instead of requiring user interaction first
+- Resolved 17 security vulnerabilities including high-severity DoS issues in dependencies (body-parser, axios, qs, tar, and others)
+
+**Full Changelog**: https://github.com/cline/cline/compare/v3.61.0...v3.62.0
+
+
+## [3.61.0] - 2026-02-13
+
+- UI/UX fixes with minimax model family
+
+**Full Changelog**: https://github.com/cline/cline/compare/v2.2.2-cli...v3.61.0
+
+
+## [3.60.0] - 2026-02-13
+
+- Fixes for Minimax model family
+
+**Full Changelog**: https://github.com/cline/cline/compare/v2.2.1-cli...v3.60.0
 
 
 ## [3.59.0] - 2026-02-12
@@ -197,13 +220,4 @@
  - Removed grok model from free tier
 
 **Full Changelog**: https://github.com/cline/cline/compare/v3.52.0...v3.53.0
-
-
-## [3.51.0] - 2026-01-15
-
-### Added
-
-- Adding OpenAI gpt-5.2-codex  model to the model picker
-
-**Full Changelog**: https://github.com/cline/cline/compare/v3.50.0...v3.51.0
 

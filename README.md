@@ -7,7 +7,9 @@
 帮你自动收集多个 AI 产品的更新日志，然后用 AI 提炼重点、翻译成中文，生成格式化的周报。
 
 **支持的产品**：
-- Claude
+- Claude Code
+- OpenCode
+- Oh My OpenCode
 - OpenClaw
 - Cline
 - RooCode

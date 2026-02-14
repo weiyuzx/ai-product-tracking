@@ -132,7 +132,7 @@ def test_ai_processor():
 
     # 读取测试数据
     data_dir = Path(__file__).parent / "data" / "raw"
-    claude_file = data_dir / "Claude.md"
+    claude_file = data_dir / "Claude Code.md"
 
     print(f"\n📂 读取文件: {claude_file.name}")
     content = claude_file.read_text(encoding='utf-8')

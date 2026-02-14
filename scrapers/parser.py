@@ -26,10 +26,12 @@ class ChangelogParser:
             解析后的更新列表，每个更新包含 version, date, content
         """
         parser_map = {
-            'Claude': self._parse_github_with_date,
+            'Claude Code': self._parse_github_with_date,
+            'OpenCode': self._parse_github_with_date,
+            'Oh My OpenCode': self._parse_github_with_date,
+            'OpenClaw': self._parse_github_with_date,  # 现在也用 releases，格式相同
             'Cline': self._parse_github_with_date,
             'RooCode': self._parse_github_with_date,
-            'OpenClaw': self._parse_github_with_date,  # 现在也用 releases，格式相同
             'Trae': self._parse_trae,
         }
 

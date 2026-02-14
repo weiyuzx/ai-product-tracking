@@ -1,6 +1,6 @@
 # RooCode Changelog
 
-最后更新: 2026-02-13 09:53:25
+最后更新: 2026-02-14 09:20:40
 
 
 ## [3.47.3] - 2026-02-06
@@ -483,16 +483,4 @@ This release includes:
 - Fix: Filter Ollama models without native tool support (PR #10735 by @daniel-lxs)
 - Feat: Add settings tab titles to search index (PR #10761 by @roomote)
 - Feat: Clarify Slack and Linear are Cloud Team only features (PR #10748 by @roomote)
-
-
-## [3.41.0] - 2026-01-15
-
-![3.41.0 Release - OpenAI - ChatGPT Plus/Pro Provider](/releases/3.41.0-release.png)
-
-- Add OpenAI - ChatGPT Plus/Pro Provider that gives subscription-based access to Codex models without per-token costs (PR #10736 by @hannesrudolph)
-- Add gpt-5.2-codex model to openai-native provider, providing access to the latest GPT model with enhanced coding capabilities (PR #10731 by @hannesrudolph)
-- Fix: Clear terminal output buffers to prevent memory leaks that could cause gray screens and performance degradation (#10666, PR #7666 by @hannesrudolph)
-- Fix: Inject dummy thought signatures on ALL tool calls for Gemini models, resolving issues with Gemini tool call handling through LiteLLM (PR #10743 by @daniel-lxs)
-- Enable E2E tests with 39 passing tests, improving test coverage and reliability (PR #10720 by @ArchimedesCrypto)
-- Add alwaysAllow config for MCP time server tools in E2E tests (PR #10733 by @ArchimedesCrypto)
 

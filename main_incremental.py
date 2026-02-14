@@ -8,6 +8,7 @@ AI 产品更新日志自动收集系统（累积模式）
 
 import json
 import os
+import time
 from pathlib import Path
 from datetime import datetime
 from scrapers import create_scraper
@@ -172,6 +173,9 @@ def main():
             })
 
             print()
+
+            # 产品之间添加0.5秒延迟，避免触发API限流
+            time.sleep(0.5)
 
         except Exception as e:
             print(f"  ✗ 失败: {e}")

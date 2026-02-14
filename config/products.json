@@ -1,9 +1,19 @@
 {
   "products": [
     {
-      "name": "Claude",
+      "name": "Claude Code",
       "type": "github-releases",
       "url": "https://github.com/anthropics/claude-code/releases"
+    },
+    {
+      "name": "OpenCode",
+      "type": "github-releases",
+      "url": "https://github.com/anomalyco/opencode/releases"
+    },
+    {
+      "name": "Oh My OpenCode",
+      "type": "github-releases",
+      "url": "https://github.com/code-yeongyu/oh-my-opencode/releases"
     },
     {
       "name": "OpenClaw",
