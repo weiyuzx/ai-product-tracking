@@ -1,8 +1,13 @@
 """
-报告提示词生成器 - 生成日报/周报/月报提示词文件
+周期汇总编译工具 - 按周期汇总各产品的更新日志
+
+使用方法：
+    python compile_summary.py --days 1   # 日报
+    python compile_summary.py --days 7   # 周报
+    python compile_summary.py --days 28  # 月报
 """
 import json
-import re
+import argparse
 from pathlib import Path
 from datetime import datetime, timedelta, date
 from platform_compat import setup_stdio_encoding
@@ -11,8 +16,8 @@ from platform_compat import setup_stdio_encoding
 setup_stdio_encoding()
 
 
-def get_report_type(days: int) -> str:
-    """根据天数判断报告类型"""
+def get_summary_type(days: int) -> str:
+    """根据天数判断汇总类型"""
     if days == 1:
         return '日报'
     elif days == 7:
@@ -23,8 +28,8 @@ def get_report_type(days: int) -> str:
         return f'{days}天报告'
 
 
-def get_report_filename(days: int) -> str:
-    """生成报告文件名：2026-D-02-14 / 2026-W-07 / 2026-M-02"""
+def get_summary_filename(days: int) -> str:
+    """生成汇总文件名：2026-D-02-14 / 2026-W-07 / 2026-M-02"""
     today = date.today()
 
     if days == 1:
@@ -123,8 +128,6 @@ def collect_all_updates(days: int = 7) -> str:
     data_dir = Path(__file__).parent / 'data' / 'raw'
 
     all_content = []
-    all_content.append("# 所有产品更新日志\n")
-    all_content.append(f"数据范围: 最近 {days} 天\n\n")
 
     for product in config['products']:
         product_name = product['name']
@@ -147,103 +150,51 @@ def collect_all_updates(days: int = 7) -> str:
     return '\n'.join(all_content)
 
 
-def generate_report_prompt(days: int = 1):
-    """
-    生成报告提示词文件（用于 skill 使用）
+def main():
+    """主函数"""
+    parser = argparse.ArgumentParser(description='编译周期汇总')
+    parser.add_argument('--days', type=int, default=1, help='周期天数（默认：1）')
 
-    Args:
-        days: 周期天数（默认1天）
-    """
-    report_type = get_report_type(days)
+    args = parser.parse_args()
+    days = args.days
+
+    summary_type = get_summary_type(days)
     print("=" * 60)
-    print(f"报告提示词生成器 - 最近 {days} 天 ({report_type})")
+    print(f"周期汇总编译工具 - 最近 {days} 天 ({summary_type})")
     print("=" * 60)
 
-    # 创建报告目录
-    reports_dir = Path(__file__).parent / 'data' / 'reports'
-    reports_dir.mkdir(parents=True, exist_ok=True)
+    # 确保汇总目录存在
+    summary_dir = Path(__file__).parent / 'data' / 'summary'
+    summary_dir.mkdir(parents=True, exist_ok=True)
 
-    # 生成报告文件名
-    report_filename = get_report_filename(days)
+    # 生成汇总文件名
+    summary_filename = get_summary_filename(days)
+    output_path = summary_dir / summary_filename
 
     # 收集所有产品更新
     print(f"\n📊 收集所有产品更新...")
     all_updates = collect_all_updates(days=days)
 
-    # 计算周期显示的起止日期（基于 date 对象）
+    # 计算周期显示的起止日期
     start_date = (date.today() - timedelta(days=days)).strftime('%Y-%m-%d')
     end_date = date.today().strftime('%Y-%m-%d')
 
-    # 生成报告提示词（用于让Claude处理）
-    print(f"\n📝 生成{report_type}提示词...")
-    report_prompt = f"""你是一个专业的产品更新报告编辑。请从以下更新日志中提取最近{days}天的关键更新，生成一份简洁的{report_type}。
-
-要求：
-
-1. 一句话总结：包含最核心的更新、发展趋势和重要价值点（重点是准确，不需要严格限制字数）
-2. 重点提炼：列出新功能、价值点、用户感知强烈的地方（3-5条，带图标）
-3. 各产品更新：按产品分组，提炼新功能和重要改进，忽略常规修复
-4. 每个产品列出最重要的3-5个更新点，不标注版本号和时间
-5. 使用emoji图标增强可读性（✨新功能、🚀重要更新、⚡改进）
-6. 先结论再逐级展开
-
-报告格式：
-
-```markdown
-# AI产品更新{report_type}
+    # 添加周期信息到文件开头
+    header = f"""# AI产品更新日志汇总
 
 **周期：{start_date} 至 {end_date}**
+**数据范围：最近 {days} 天**
 
-**一句话总结：** 本周期最核心的更新、发展趋势和重要价值点（重点是准确）
-
-## 重点提炼
-
-🚀 新功能或重要更新
-✨ 新功能
-🧠 新功能
-
-## 各产品更新
-
-### Claude
-
-✨ 功能1
-✨ 功能2
-⚡ 功能3
-
-### Cline
-
-✨ 功能1
-
-...
-```
-
-请基于以下数据生成{report_type}：
-
-{all_updates}
 """
 
-    # 保存提示词到临时文件
-    temp_prompt_file = Path(__file__).parent / 'data' / '_temp_prompt.txt'
-    temp_prompt_file.write_text(report_prompt, encoding='utf-8')
+    # 保存汇总文件
+    full_content = header + all_updates
+    output_path.write_text(full_content, encoding='utf-8')
 
-    print(f"✅ {report_type}提示词已准备好\n")
-    print(f"📄 提示词位置: {temp_prompt_file}\n")
-    print(f"💡 请将提示词内容发送给Claude，让Claude生成最终的{report_type}")
-    print(f"   {report_type}将保存到: {reports_dir / report_filename}")
-
-    return {
-        'prompt_file': str(temp_prompt_file),
-        'expected_report': str(reports_dir / report_filename),
-        'report_type': report_type,
-        'filename': report_filename
-    }
+    print(f"\n✅ 汇总文件已生成")
+    print(f"📄 保存位置: {output_path}")
+    print(f"📊 包含产品数: {len(load_config()['products'])}")
 
 
 if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser(description='生成AI产品更新报告提示词')
-    parser.add_argument('--days', type=int, default=1, help='周期天数（默认：1）')
-
-    args = parser.parse_args()
-    generate_report_prompt(days=args.days)
+    main()

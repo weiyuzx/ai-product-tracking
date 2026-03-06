@@ -29,6 +29,7 @@ data/_temp_prompt.txt
 
 # 生成的报告
 data/reports/
+data/summary/
 
 # IDE
 .vscode/

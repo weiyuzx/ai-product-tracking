@@ -1,10 +1,10 @@
 # AI 产品追踪系统
 
-自动追踪 AI 产品的更新日志，用 Claude Code 一键生成中文报告（日报/周报/月报）。
+自动追踪 AI 产品的更新日志，按周期汇总原始更新内容。
 
 ## 🎯 这个项目做什么？
 
-帮你自动收集多个 AI 产品的更新日志，然后用 Claude Code 提炼重点、翻译成中文，生成格式化的报告（日报/周报/月报）。
+帮你自动收集多个 AI 产品的更新日志，并按指定周期（日报/周报/月报）汇总到一个文件中。
 
 **支持的产品**：
 - Claude Code
@@ -15,33 +15,37 @@
 - RooCode
 - Trae
 
-**生成的报告包括**：
-- 一句话总结本周期核心更新
-- 本周期要点（3-5条重要更新）
-- 各产品的详细更新列表
+**项目功能**：
+1. **爬取更新日志**：从各产品官网自动获取最新更新
+2. **周期汇总**：按天/周/月汇总原始更新内容到一个文件
 
 ## 📖 如何使用
 
-在 Claude Code 中运行：
+### 步骤 1：爬取最新数据
 
 ```bash
-/tracking-report --days 1
+# Windows
+python collect_raw_updates.py
+
+# macOS/Linux
+python3 collect_raw_updates.py
 ```
 
-skill 会自动完成：
-1. ✅ **爬取更新**：从各产品网站获取最新日志
-2. ✅ **过滤数据**：只保留最近N天的更新（根据 days 参数）
-3. ✅ **AI 处理**：提炼重点 + 翻译成中文
-4. ✅ **生成报告**：保存到 `data/reports/`
+这会将各产品的最新更新保存到 `data/raw/*.md`
 
-## 🤖 为什么需要 Claude Code？
+### 步骤 2：按周期汇总
 
-这个项目依赖 **Claude Code 的 AI 能力**：
-- 🧠 **提炼重点**：从大量更新中筛选重要内容
-- 🌐 **翻译成中文**：将英文更新翻译成专业中文
-- 📝 **格式化**：生成统一的周报格式
+```bash
+# 默认生成日报（最近1天）
+python compile_summary.py          # Windows
+python3 compile_summary.py         # macOS/Linux
 
-不是自己搭建 AI 服务，而是直接用 Claude Code 的能力。
+# 生成其他周期
+python compile_summary.py --days 7    # 周报
+python compile_summary.py --days 28   # 月报
+```
+
+汇总文件会保存到 `data/summary/*.md`
 
 ## ⚙️ 配置产品清单
 
@@ -65,12 +69,21 @@ skill 会自动完成：
 
 ## 📊 输出文件
 
-生成的报告保存在：`data/reports/`
+### 原始数据：`data/raw/*.md`
 
-**文件命名格式**（英文）：
-- 日报：`2026-D-02-14.md`（年-D-月-日.md）
-- 周报：`2026-W-07.md`（年-W-周数.md）
-- 月报：`2026-M-02.md`（年-M-月.md）
+每个产品一个文件，包含所有历史更新，时间逆序排列：
+- `data/raw/Claude Code.md`
+- `data/raw/OpenCode.md`
+- ...
+
+### 汇总数据：`data/summary/*.md`
+
+按周期汇总的原始更新日志：
+
+**文件命名格式**：
+- 日报：`2026-D-02-14.md`
+- 周报：`2026-W-07.md`
+- 月报：`2026-M-02.md`
 
 ## 🚀 快速开始
 
@@ -80,12 +93,25 @@ skill 会自动完成：
    cd ai-product-tracking
    ```
 
-2. **生成周报**：
+2. **安装依赖**（首次使用）：
    ```bash
-   /tracking-report --days 7
+   # Windows
+   pip install -r requirements.txt
+
+   # macOS/Linux
+   pip3 install -r requirements.txt
    ```
 
-第一次使用时，skill 会自动检查并提示安装依赖。
+3. **爬取数据**：
+   ```bash
+   python collect_raw_updates.py
+   ```
+
+4. **生成汇总**（默认最近1天）：
+   ```bash
+   python compile_summary.py          # Windows
+   python3 compile_summary.py         # macOS/Linux
+   ```
 
 ## 💻 跨平台支持
 
