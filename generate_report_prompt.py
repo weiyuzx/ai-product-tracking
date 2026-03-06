@@ -4,7 +4,7 @@
 import json
 import re
 from pathlib import Path
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from platform_compat import setup_stdio_encoding
 
 # 跨平台兼容性设置
@@ -25,21 +25,21 @@ def get_report_type(days: int) -> str:
 
 def get_report_filename(days: int) -> str:
     """生成报告文件名：2026-D-02-14 / 2026-W-07 / 2026-M-02"""
-    now = datetime.now()
+    today = date.today()
 
     if days == 1:
         # Daily: 2026-D-02-14.md
-        return now.strftime('%Y-D-%m-%d.md')
+        return today.strftime('%Y-D-%m-%d.md')
     elif days == 7:
         # Weekly: 2026-W-07.md
-        week_num = now.isocalendar()[1]
-        return f"{now.strftime('%Y')}-W-{week_num:02d}.md"
+        week_num = today.isocalendar()[1]
+        return f"{today.strftime('%Y')}-W-{week_num:02d}.md"
     elif days >= 28:
         # Monthly: 2026-M-02.md
-        return now.strftime('%Y-M-%m.md')
+        return today.strftime('%Y-M-%m.md')
     else:
         # Custom: 2026-C-02-14.md (C for Custom)
-        return now.strftime('%Y-C-%m-%d.md')
+        return today.strftime('%Y-C-%m-%d.md')
 
 
 def load_config():
@@ -51,7 +51,7 @@ def load_config():
 
 def filter_recent_updates(content: str, days: int = 7) -> str:
     """
-    过滤最近N天的更新
+    过滤最近N天的更新（基于日期比较，不涉及时分秒）
 
     Args:
         content: 更新日志内容
@@ -62,7 +62,8 @@ def filter_recent_updates(content: str, days: int = 7) -> str:
     """
     lines = content.split('\n')
     result = []
-    cutoff_date = datetime.now() - timedelta(days=days)
+    # 使用 date 对象，只比较日期，不涉及时分秒
+    cutoff_date = date.today() - timedelta(days=days)
 
     current_version = []
     in_version = False
@@ -86,7 +87,9 @@ def filter_recent_updates(content: str, days: int = 7) -> str:
             if ' - ' in line:
                 date_str = line.split(' - ')[1].strip()
                 try:
-                    version_date = datetime.strptime(date_str, '%Y-%m-%d')
+                    # 解析为 date 对象（不含时分秒）
+                    version_date = datetime.strptime(date_str, '%Y-%m-%d').date()
+                    # 日期比较：简洁清晰
                     if version_date >= cutoff_date:
                         should_include = True
                 except:
@@ -167,9 +170,9 @@ def generate_report_prompt(days: int = 1):
     print(f"\n📊 收集所有产品更新...")
     all_updates = collect_all_updates(days=days)
 
-    # 计算周期显示的起止日期（往前推算，包括今天）
-    start_date = (datetime.now() - timedelta(days=days)).strftime('%Y-%m-%d')
-    end_date = datetime.now().strftime('%Y-%m-%d')
+    # 计算周期显示的起止日期（基于 date 对象）
+    start_date = (date.today() - timedelta(days=days)).strftime('%Y-%m-%d')
+    end_date = date.today().strftime('%Y-%m-%d')
 
     # 生成报告提示词（用于让Claude处理）
     print(f"\n📝 生成{report_type}提示词...")

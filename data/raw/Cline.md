@@ -1,6 +1,175 @@
 # Cline Changelog
 
 
+## [3.70.0] - 2026-03-04
+
+### Added
+
+- New Cline API docs: Getting Started, Auth, Chat Completions, Models, Errors, and SDK Examples
+- Hook payloads now include `model.provider` and `model.slug` 
+- Token/cost updates now happen immediately as usage chunks arrive, not after tool execution
+
+### Fixed
+
+- Improve subagent context compaction logic
+- Subagent stream retry delay increased to reduce noise from transient failures
+- State serialization errors are now caught and logged instead of crashing
+- Removed incorrect `max_tokens` from OpenRouter requests
+
+### Changed
+
+- Windows test cleanup now retries on locked files and applies per-test timeouts
+- Updated hooks docs 
+
+**Full Changelog**: https://github.com/cline/cline/compare/v2.5.2-cli...v3.70.0
+
+
+## [3.69.0] - 2026-03-03
+
+### Added
+
+- Add `User-Agent` header to requests sent to the Cline backend
+- Add default auto-tag workflow for publish release flow
+- Show Cline SDK docs on the Cline page
+
+### Fixed
+
+- Retry nested git restore and prevent silent `.git_disabled` leftovers in checkpoints
+- Prevent Chinese filename escaping in diff view
+- Trigger auto-compaction on OpenRouter context overflow errors
+- Restore GPT-OSS native file editing on OpenAI-compatible models
+
+### Changed
+
+- Update Cline SDK docs
+- Improve hooks support for Windows PowerShell
+
+**Full Changelog**: https://github.com/cline/cline/compare/v2.5.1-cli...v3.69.0
+
+
+## [3.68.0] - 2026-02-27
+
+### Added
+
+- Add dynamic Cline provider model fetching from Cline endpoint
+- Add additional Markdown formatting in CLI
+- Add focus indicator on action buttons in extension
+
+### Fixed
+
+- Clear all OCA secrets on auth refresh failure to prevent re-auth loops
+- Resolve "Could not find the file context" error in Explain Changes
+- Use `JSON_SCHEMA` for `yaml.load` to prevent unsafe deserialization
+- Fetch model info from API in CLI headless auth for Cline and Vercel providers
+- Generate commit message from staged changes only when staging exists
+- Update stale `maxTokens` values for Claude 3.7+ models across Anthropic, Bedrock, Vertex, and SAP AI Core
+- Use `model.info.maxTokens` for OpenRouter instead of hardcoded `8192`
+
+### Changed
+
+- Increase timeout for a flaky test to reduce short-term test instability
+
+**Full Changelog**: https://github.com/cline/cline/compare/v2.5.0-cli...v3.68.0
+
+
+## [3.67.1] - 2026-02-24
+
+### Added
+
+- Added Cline SDK API interface for programmatic access to Cline features and tools, enabling integration into custom applications.
+- Added Codex 5.3 model support
+
+### Fixed
+
+- Fix OpenAI Codex by setting `store` to `false`
+- Use `isLocatedInPath()` instead of string matching for path containment checks
+
+**Full Changelog**: https://github.com/cline/cline/compare/v2.4.3-cli...v3.67.1
+
+
+## [3.67.0] - 2026-02-24
+
+### Added
+
+- Add support for skills and optional modelId in subagent configuration
+- Add AgentConfigLoader for file-based agent configs
+- Add Responses API support for OpenAI native provider
+- Preconnect websocket to reduce response latency
+- Fetch featured models from backend with local fallback
+- Add /q command to quit CLI
+- Add MCP enterprise configuration details
+- Pull Cline's recommended models from internal endpoint
+- Add dynamic flag to adjust banner cache duration
+
+### Fixed
+
+- Fix reasoning delta crash on usage-only stream chunks
+- Fix OpenAI tool ID transformation restricted to native provider only
+- Fix auth check for ACP mode
+- Fix CLI yolo mode to not persist yolo setting to disk
+- Fix inline focus-chain slider within its feature row
+- Fix Gemini 3.1 Pro compatibility
+- Fix Cline auth with ACP flag
+
+### Changed
+
+- Move PR skill to .agents/skills
+- SambaNova provider: update models list
+- Remove changeset-converter GitHub Action and npm run changeset
+
+**Full Changelog**: https://github.com/cline/cline/compare/v2.4.2-cli...v3.67.0
+
+
+## [3.66.0] - 2026-02-19
+
+### Added
+
+- Gemini-3.1 Pro Preview
+
+**Full Changelog**: https://github.com/cline/cline/compare/v2.4.1-cli...v3.66.0
+
+
+## [3.65.0] - 2026-02-18
+
+### Added
+
+- Add /skills slash command to CLI for viewing and managing installed skills
+
+### Fixed
+
+- Fix aggressive context compaction caused by accidental clicks on the context window progress bar silently setting a very low auto-condense threshold
+- Fix infinite retry loop when write_to_file fails with missing content parameter.
+- Fixed default claude model
+
+**Full Changelog**: https://github.com/cline/cline/compare/v2.4.0-cli...v3.65.0
+
+
+## [3.64.0] - 2026-02-17
+
+### Added
+
+- added zai GLM 5 Free promo
+
+### Fixed
+
+- Restore reasoning trace visibility in chat and improve the thinking row UX so reasoning is visible, then collapsible after completion.
+
+**Full Changelog**: https://github.com/cline/cline/compare/v2.2.3-cli...v3.64.0
+
+
+## [3.63.0] - 2026-02-16
+
+### Added
+
+- added zai GLM 5 Free promo
+
+### Fixed
+
+- Restore reasoning trace visibility in chat and improve the thinking row UX so reasoning is visible, then collapsible after completion.
+
+**Full Changelog**: https://github.com/cline/cline/compare/v3.62.0...v3.63.0
+
+
 ## [3.62.0] - 2026-02-13
 
 ### Fixed
@@ -96,126 +265,4 @@
 - Make skills always enabled and remove feature toggle setting
 
 **Full Changelog**: https://github.com/cline/cline/compare/v2.0.5-cli...v3.57.0
-
-
-## [3.56.2] - 2026-01-30
-
-### Added
-
-- __CLI authentication:__ Added Vercel AI Gateway and Cline API key provider support for headless CI/automation workflows
-- __New model:__ Added Kimi-K2.5 model to Moonshot provider (262K context, image support, prompt caching)
-- __Prompt variant:__ Added Trinity Large prompt variant for improved tool-calling support
-- __OpenTelemetry:__ Added support for custom headers on metrics and logs endpoints
-- __Social links:__ Added community icons (X, Discord, GitHub, Reddit, LinkedIn) to the What's New modal
-
-### Fixed
-
-- __LiteLLM:__ Fixed thinking configuration not appearing for reasoning-capable models
-- __OpenTelemetry:__ Fixed endpoint path handling (no longer incorrectly appends `/v1/logs` or `/v1/metrics`) and ensured logs are sent regardless of VSCode telemetry settings
-- __CLI auth:__ Fixed `cline auth` displaying incorrect provider information after configuration
-
-### Changed
-
-- __Hooks:__ Hook scripts now run from the workspace repository root instead of filesystem root
-- __Default settings:__ Enabled multi-root workspaces, parallel tool calling, and skills by default; disabled strict plan mode by default
-- __Settings UI:__ Refreshed feature settings section with collapsible design
-
-**Full Changelog**: https://github.com/cline/cline/compare/v3.56.1...v3.56.2
-
-
-## [3.56.1] - 2026-01-30
-
-### Added
-
-- __CLI authentication:__ Added Vercel AI Gateway and Cline API key provider support for headless CI/automation workflows
-- __New model:__ Added Kimi-K2.5 model to Moonshot provider (262K context, image support, prompt caching)
-- __Prompt variant:__ Added Trinity Large prompt variant for improved tool-calling support
-- __OpenTelemetry:__ Added support for custom headers on metrics and logs endpoints
-- __Social links:__ Added community icons (X, Discord, GitHub, Reddit, LinkedIn) to the What's New modal
-
-### Fixed
-
-- __LiteLLM:__ Fixed thinking configuration not appearing for reasoning-capable models
-- __OpenTelemetry:__ Fixed endpoint path handling (no longer incorrectly appends `/v1/logs` or `/v1/metrics`) and ensured logs are sent regardless of VSCode telemetry settings
-- __CLI auth:__ Fixed `cline auth` displaying incorrect provider information after configuration
-
-### Changed
-
-- __Hooks:__ Hook scripts now run from the workspace repository root instead of filesystem root
-- __Default settings:__ Enabled multi-root workspaces, parallel tool calling, and skills by default; disabled strict plan mode by default
-- __Settings UI:__ Refreshed feature settings section with collapsible design
-
-**Full Changelog**: https://github.com/cline/cline/compare/v3.56.0...v3.56.1
-
-
-## [3.56.0] - 2026-01-30
-
-### Added
-
-- __CLI authentication:__ Added Vercel AI Gateway and Cline API key provider support for headless CI/automation workflows
-- __New model:__ Added Kimi-K2.5 model to Moonshot provider (262K context, image support, prompt caching)
-- __Prompt variant:__ Added Trinity Large prompt variant for improved tool-calling support
-- __OpenTelemetry:__ Added support for custom headers on metrics and logs endpoints
-- __Social links:__ Added community icons (X, Discord, GitHub, Reddit, LinkedIn) to the What's New modal
-
-### Fixed
-
-- __LiteLLM:__ Fixed thinking configuration not appearing for reasoning-capable models
-- __OpenTelemetry:__ Fixed endpoint path handling (no longer incorrectly appends `/v1/logs` or `/v1/metrics`) and ensured logs are sent regardless of VSCode telemetry settings
-- __CLI auth:__ Fixed `cline auth` displaying incorrect provider information after configuration
-
-### Changed
-
-- __Hooks:__ Hook scripts now run from the workspace repository root instead of filesystem root
-- __Default settings:__ Enabled multi-root workspaces, parallel tool calling, and skills by default; disabled strict plan mode by default
-- __Settings UI:__ Refreshed feature settings section with collapsible design
-
-**Full Changelog**: https://github.com/cline/cline/compare/v3.55.0...v3.56.0
-
-
-## [3.55.0] - 2026-01-28
-
-- Add new model: Arcee Trinity Large Preview
-- Add new model: Moonshot Kimi K2.5
-- Add MCP prompts support - prompts from connected MCP servers now appear in slash command autocomplete as `/mcp:<server>:<prompt>`
-
-**Full Changelog**: https://github.com/cline/cline/compare/v3.54.0...v3.55.0
-
-
-## [3.54.0] - 2026-01-27
-
-### Added
-
-- Native tool calls support for Ollama provider
-- Sonnet 4.5 is now the default Amazon Bedrock model id
-
-### Fixed
-
-- Prevent infinite retry loops when replace_in_file fails repeatedly. The system now detects repeated failures and provides better guidance to break out of retry cycles.
-- Skip diff error UI handling during streaming to prevent flickering. Error handling is deferred until streaming completes.
-- Strip notebook cell outputs when extracting text content from Jupyter notebooks, significantly reducing context size sent to the LLM.
-- Throttle diff view updates during streaming to reduce UI flickering and improve performance.
-
-### Changed
-
-- Removed Mistral's Devstral-2512 free from the free models list
-- Removed deprecated zai-glm-4.6 model from Cerebras provider
-
-**Full Changelog**: https://github.com/cline/cline/compare/v3.53.1...v3.54.0
-
-
-## [3.53.1] - 2026-01-24
-
-### Fixed
- - Bug in responses API
-
-**Full Changelog**: https://github.com/cline/cline/compare/v3.53.0...v3.53.1
-
-
-## [3.53.0] - 2026-01-23
-
-### Fixed
- - Removed grok model from free tier
-
-**Full Changelog**: https://github.com/cline/cline/compare/v3.52.0...v3.53.0
 
