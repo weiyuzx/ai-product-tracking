@@ -1,8 +1,22 @@
-from typing import Dict, Any
+from typing import Dict, Any, List
+import json
 import requests
 import re
 import time
+from pathlib import Path
 from datetime import datetime
+
+
+def load_blacklist() -> List[str]:
+    """从配置文件加载黑名单关键词列表"""
+    config_path = Path(__file__).parent.parent / 'config' / 'products.json'
+    try:
+        with open(config_path, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        return [kw.lower() for kw in config.get('blacklist', [])]
+    except Exception:
+        return []
+
 
 class GitHubReleasesScraper:
     """GitHub Releases 爬虫"""
@@ -11,6 +25,7 @@ class GitHubReleasesScraper:
         self.name = product['name']
         self.type = product.get('type', 'github-releases')
         self.url = product['url']
+        self.blacklist = load_blacklist()
 
         # 从 URL 中提取 owner 和 repo
         # https://github.com/anthropics/claude-code/releases
@@ -27,6 +42,17 @@ class GitHubReleasesScraper:
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
             'Accept': 'application/vnd.github.v3+json'
         }
+
+    def _is_blacklisted(self, release: dict) -> bool:
+        """检查 release 是否匹配黑名单关键词（tag_name 和 name 均检查）"""
+        if not self.blacklist:
+            return False
+        tag_name = release.get('tag_name', '').lower()
+        name = release.get('name', '').lower()
+        for kw in self.blacklist:
+            if kw in tag_name or kw in name:
+                return True
+        return False
 
     def fetch(self) -> str:
         """从 GitHub Releases 获取更新日志（带重试机制）"""
@@ -52,12 +78,16 @@ class GitHubReleasesScraper:
                 if not releases:
                     raise Exception(f"未找到 {self.name} 的 releases")
 
-                # 过滤掉自动构建版本（如 cli-build-xxx）
+                # 过滤掉自动构建版本和黑名单版本
                 filtered_releases = []
                 for release in releases:
                     tag_name = release.get('tag_name', '')
                     # 跳过自动构建版本
                     if not tag_name or 'cli-build-' in tag_name or 'build-' in tag_name:
+                        continue
+                    # 跳过黑名单匹配的版本
+                    if self._is_blacklisted(release):
+                        print(f"  ⛔ 跳过黑名单版本: {tag_name}")
                         continue
                     filtered_releases.append(release)
 
